@@ -1,0 +1,28 @@
+html,
+body {
+  background: url('../images/wallpaper/bg_mountain.jpg') no-repeat center fixed;
+}
+
+section {
+  border: 15px solid #02E3FE;
+}
+
+.form-title {
+  color: #73E25F;
+}
+
+.title-category {
+  color: #029221;
+}
+
+.form-btn {
+  background-color: #029221;
+}
+
+.form-btn:hover {
+  background-color: #02E3FE;
+}
+
+footer {
+  background-color: #02E3FE;
+}

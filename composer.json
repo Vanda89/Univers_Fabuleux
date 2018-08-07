@@ -1,0 +1,20 @@
+{
+  "name": "sandrine/p5_universFabuleux",
+  "authors": [
+    {
+      "name": "Vanda89",
+      "email": "sandrinealcazar@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/var-dumper": "^4.1",
+    "altorouter/altorouter" : "^1.2",
+    "league/plates": "^3.3"
+
+  },
+  "autoload": {
+    "psr-4": {
+      "P5universFabuleux\\": "app/"
+    }
+  }
+}

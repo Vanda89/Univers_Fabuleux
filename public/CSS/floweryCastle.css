@@ -1,0 +1,28 @@
+html,
+body {
+  background: url('../images/wallpaper/bg_flowery-castle.jpg') no-repeat center fixed;
+}
+
+section {
+  border: 15px solid #FCA8D4;
+}
+
+.form-title {
+  color: #E6B082;
+}
+
+.title-category {
+  color: #BE7F5A;
+}
+
+.form-btn {
+  background-color: #BE7F5A;
+}
+
+.form-btn:hover {
+  background-color: #FCA8D4;
+}
+
+footer {
+   background-color: #B6774D;
+}

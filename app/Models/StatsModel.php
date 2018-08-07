@@ -8,10 +8,9 @@ use PDO;
 class GameModel
 {
     private $id;
-    private $name;
-    private $type;
-    private $recommended_age;
-    private $difficulty_level;
+    private $play_date;
+    private $scores;
+    private $game_time;
 
     /**
      * findAll.
@@ -19,8 +18,9 @@ class GameModel
     public static function findAll()
     {
         $sql = '
-            SELECT id, name, type, recommended_age, difficulty_level
-            ORDER BY name 
+            SELECT id, play_date, scores, game_time
+            FROM stats
+            ORDER BY play_date DESC
         ';
         // On récupère la connextion PDO à la DB
         $pdo = Database::dbConnect();
@@ -36,15 +36,18 @@ class GameModel
     }
 
     /**
-     * findPagination.
+     * findAllByPagination.
+     *
+     * @param mixed $page
+     * @param mixed $nbPostByPage
      */
     public static function findAllByPagination($page, $nbPostByPage)
     {
         $start = ($page - 1) * $nbPostByPage;
         $sql = '
-            SELECT id, name, type, recommended_age, difficulty_level
-            FROM game
-            ORDER BY name DESC
+            SELECT id, play_date, scores, game_time
+            FROM stats
+            ORDER BY play_date DESC
             LIMIT '.$start.', '.$nbPostByPage.'
         ';
         // On récupère la connextion PDO à la DB
@@ -68,8 +71,8 @@ class GameModel
     public static function find($id)
     {
         $sql = '
-            SELECT id, name, type, recommended_age, difficulty_level
-            FROM game
+            SELECT id, play_date, scores, game_time
+            FROM stats
             WHERE id = (:id)
         ';
         // On récupère la connextion PDO à la DB
@@ -77,10 +80,35 @@ class GameModel
         // On prépare une requête à l'exécution et retourne un objet
         $pdoStatement = $pdo->prepare($sql);
         // Association des valeurs aux champs de la bdd et paramètrage du retour
-        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':idPost', $idPost, PDO::PARAM_INT);
         $pdoStatement->execute();
 
         return $pdoStatement->fetchObject(self::class);
+    }
+
+    /**
+     * add.
+     *
+     * @param mixed $play_date
+     * @param mixed $scores
+     * @param mixed $game_time
+     */
+    public static function add($play_date, $scores, $game_time)
+    {
+        $sql = '
+            INSERT INTO stats (play_date, scores, game_time)
+            VALUES (NOW(), :scores, :game_time)
+        ';
+
+        // On récupère la connextion PDO à la DB
+        $pdo = Database::dbConnect();
+        // On prépare une requête à l'exécution et retourne un objet
+        $pdoStatement = $pdo->prepare($sql);
+        // Association des valeurs aux champs de la bdd et paramètrage du retour
+        $pdoStatement->bindValue(':play_date', $play_date, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':scores', $scores, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':game_time', $game_time, PDO::PARAM_STR);
+        $pdoStatement->execute();
     }
 
     /**
@@ -104,81 +132,41 @@ class GameModel
     }
 
     /**
-     * Get the value of name.
+     * Get the value of scores.
      */
-    public function getName()
+    public function getScores()
     {
-        return $this->name;
+        return $this->scores;
     }
 
     /**
-     * Set the value of name.
+     * Set the value of scores.
      *
      * @return self
      */
-    public function setName($name)
+    public function setScores($scores)
     {
-        $this->name = $name;
+        $this->scores = $scores;
 
         return $this;
     }
 
     /**
-     * Get the value of type.
+     * Get the value of games_time.
      */
-    public function getType()
+    public function getGames_time()
     {
-        return $this->type;
+        return $this->games_time;
     }
 
     /**
-     * Set the value of type.
+     * Set the value of games_time.
      *
      * @return self
      */
-    public function setType($type)
+    public function setGames_time($game_time)
     {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of recommended_age.
-     */
-    public function getRecommended_age()
-    {
-        return $this->recommended_age;
-    }
-
-    /**
-     * Set the value of recommended_age.
-     *
-     * @return self
-     */
-    public function setRecommended_age($recommended_age)
-    {
-        $this->recommended_age = $recommended_age;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of difficulty_level.
-     */
-    public function getDifficulty_level()
-    {
-        return $this->difficulty_level;
-    }
-
-    /**
-     * Set the value of difficulty_level.
-     *
-     * @return self
-     */
-    public function setDifficulty_level($difficulty_level)
-    {
-        $this->difficulty_level = $difficulty_level;
+        $this->games_time = $game_time;
 
         return $this;
     }

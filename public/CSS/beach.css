@@ -1,0 +1,29 @@
+
+html,
+body {
+  background: url('../images/wallpaper/bg_beach.jpg') no-repeat center fixed;
+}
+
+section {
+  border: 15px solid #8A6530;
+}
+
+.form-title {
+  color: #E6B451;
+}
+
+.title-category {
+  color: #F9DE87;
+}
+
+.form-btn {
+  background-color: #8A6530;
+}
+
+.form-btn:hover {
+  background-color: #E6B451;
+}
+
+footer {
+  background-color: #8A6530;
+}

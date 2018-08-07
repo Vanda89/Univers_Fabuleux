@@ -15,6 +15,7 @@ body {
 .full-header {}
 
 #hidden-header {
+  position: fixed;
   height: 6em;
   background-color: rgba(0, 0, 0, 0.32);
 }
@@ -107,34 +108,55 @@ body {
 }
 
 section {
-  min-height: 20em;
+  min-height: 50em;
   font-family: 'Fredoka One', cursive;
   background-color: rgba(255, 255, 255, 0.52);
-  border: 15px solid #469A45;
+  border: 15px solid #459A45;
   border-radius: 2em;
 }
 
-.connection-form-title,
-.registration-form-title,
-.profile-form-title {
+.form-title {
   font-family: 'Chela One', cursive;
-  font-size: 2.5em;
+  font-size: 2em;
   font-variant: small-caps;
+  color: #BACB3E;
+  text-shadow: 0 0 5px white,
+  0 0 5px white,
+  0 0 5px white,
+  0 0 5px white,
+  0 0 5px white,
+  0 0 5px white,
+  0 0 5px white,
+  0 0 5px white;
 }
 
 .title-category {
   font-family: 'Chela One', cursive;
   font-size: 1.5em;
+  color: #F2E92C;
+  text-shadow: 0 0 5px white,
+  0 0 5px black,
+  0 0 5px white;
 }
 
 .form-label,
 .rememberMe {
   color: white;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62);
 }
 
-#color {
-  height: 3em;
+.form-btn {
+  background-color: #BACB3E;
+  border-color: white;
+}
+
+.form-btn:hover {
+  background-color: #459A45;
+  border-color: white;
+}
+
+#reset-pswd {
+  font-size: 0.9em;
 }
 
 .stats-game {
@@ -144,7 +166,7 @@ section {
 }
 
 footer {
-  background-color: #469A45;
+  background-color: #459A45;
 }
 
 @media screen and (min-width: 768px) {
@@ -168,6 +190,12 @@ footer {
   }
   #hidden-header nav {
     display: block !important;
+  }
+
+  .form-title,
+  .form-title,
+  .form-title {
+    font-size: 2.5em;
   }
 }
 
@@ -194,15 +222,16 @@ footer {
   .nav-icon {
     font-size: 1.2em;
   }
-  .connection-form-title,
-  .registration-form-title,
-  .profile-form-title {
-    font-size: 4em;
+  .form-title,
+  .form-title,
+  .form-title {
+    font-size: 3.8em;
   }
   .title-category {
     font-size: 2em;
   }
-  .profile-form-label {
+ 
+  .form-label {
     font-size: 1.2em;
   }
   .rememberMe {}

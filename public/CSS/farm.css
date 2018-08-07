@@ -1,0 +1,29 @@
+
+html,
+body {
+  background: url('../images/wallpaper/bg_farm.jpg') no-repeat center fixed;
+}
+
+section {
+  border: 15px solid #F23F1F;
+}
+
+.form-title {
+  color: #F7A400;
+}
+
+.title-category {
+  color: #992B38;
+}
+
+.form-btn {
+  background-color: #F23F1F;
+}
+
+.form-btn:hover {
+  background-color: #F7A400;
+}
+
+footer {
+  background-color: #F23F1F;
+}

@@ -1,0 +1,28 @@
+html,
+body {
+  background: url('../images/wallpaper/bg_space.jpg') no-repeat center fixed;
+}
+
+section {
+  border: 15px solid #547181;
+}
+
+.form-title {
+  color: #D54500;
+}
+
+.title-category {
+  color: #ED8700;
+}
+
+.form-btn {
+  background-color: #ED8700;
+}
+
+.form-btn:hover {
+  background-color: #547181;
+}
+
+footer {
+  background-color: #547181;
+}

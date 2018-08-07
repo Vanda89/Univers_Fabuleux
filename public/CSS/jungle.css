@@ -1,0 +1,28 @@
+html,
+body {
+  background: url('../images/wallpaper/bg_jungle.jpg') no-repeat center fixed;
+}
+
+section {
+  border: 15px solid #21A08F;
+}
+
+.form-title {
+  color: #48CA4E;
+}
+
+.title-category {
+  color: #FF6370;
+}
+
+.form-btn {
+  background-color: #FF6370;
+}
+
+.form-btn:hover {
+  background-color: #48CA4E;
+}
+
+footer {
+  background-color: #21A08F;
+}
