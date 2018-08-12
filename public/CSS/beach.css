@@ -2,6 +2,7 @@
 html,
 body {
   background: url('../images/wallpaper/bg_beach.jpg') no-repeat center fixed;
+  background-size: cover;
 }
 
 section {

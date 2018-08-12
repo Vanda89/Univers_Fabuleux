@@ -1,6 +1,7 @@
 html,
 body {
   background: url('../images/wallpaper/bg_mountain.jpg') no-repeat center fixed;
+  background-size: cover;
 }
 
 section {

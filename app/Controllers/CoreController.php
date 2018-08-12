@@ -6,6 +6,7 @@ namespace P5universFabuleux\Controllers;
 use League\Plates\Engine as Plates;
 use P5universFabuleux\Application;
 use P5universFabuleux\Utils\User;
+use P5universFabuleux\Models\ThemeModel;
 
 // classe héritée par tous les controllers
 abstract class CoreController
@@ -26,12 +27,27 @@ abstract class CoreController
         // Stockage de AltoRouter
         $this->router = $app->getRouter();
 
+        $connectedUser = User::isConnected() ? User::getConnectedUser() : false; // $connectedUser => user connecté
+
+        $userTheme = User::isConnected() ? ThemeModel::find($connectedUser->getTheme_id()) : '';
+
+        // \dump($userTheme->getName());
+        $themeStyle = User::isConnected() ? $userTheme->getStyle() : '';
+
+        // if (User::isConnected()) {
+
+        // }
+        // else {
+
+        // }
+
         // On transmet des données à toutes les views
         $this->templateEngine->addData([
             'router' => $this->router, // => $router dans toutes les views
             'basePath' => $app->getConfig('BASE_PATH'), // => $basePath
-            'connectedUser' => User::isConnected() ? User::getConnectedUser() : false, // $connectedUser => user connecté
-        ]);
+            'connectedUser' => $connectedUser,
+            'themeStyle' => $themeStyle,
+            ]);
     }
 
     // Méthode permettant d'afficher la view correspondante pour une page

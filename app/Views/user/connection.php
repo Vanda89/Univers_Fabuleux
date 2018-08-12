@@ -44,6 +44,9 @@
       </div>
       <button type="submit" class="form-btn row btn btn-dark btn-lg mb-5" name="connection-btn">Connexion</button>
     </form>
-
   </section>
 </main>
+
+<?php $this->push('js'); ?>
+<script src="<?= $basePath; ?>/js/app.js"></script>
+<?php $this->end(); ?>

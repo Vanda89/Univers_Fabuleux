@@ -11,11 +11,11 @@ class UserModel
     private $firstname;
     private $sex;
     private $birthday;
-    private $theme;
     private $mail;
     private $password;
     private $connection_time;
     private $is_user;
+    private $theme_id;
 
     /**
      * findAll.
@@ -107,27 +107,27 @@ class UserModel
         return $pdoStatement->fetchObject(self::class);
     }
 
-    /**
-     * findByTheme.
-     *
-     * @param int $theme
-     */
-    public static function findByTheme(int $theme)
-    {
-        $sql = '
-            SELECT *
-            FROM user
-            WHERE theme = :theme
-        ';
-        // On récupère la connextion PDO à la DB
-        $pdo = Database::dbConnect();
-        // On prépare une requête à l'exécution et retourne un objet
-        $pdoStatement = $pdo->prepare($sql);
-        $pdoStatement->bindValue(':theme', $theme, PDO::PARAM_STR);
-        $pdoStatement->execute();
+    // /**
+    //  * findThemeById.
+    //  *
+    //  * @param int $id
+    //  */
+    // public static function findThemeById($id)
+    // {
+    //     $sql = '
+    //         SELECT theme_id
+    //         FROM user
+    //         WHERE id = :id
+    //     ';
+    //     // On récupère la connextion PDO à la DB
+    //     $pdo = Database::dbConnect();
+    //     // On prépare une requête à l'exécution et retourne un objet
+    //     $pdoStatement = $pdo->prepare($sql);
+    //     $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+    //     $pdoStatement->execute();
 
-        return $pdoStatement->fetchObject(self::class);
-    }
+    //     return $pdoStatement->fetchObject(self::class);
+    // }
 
     /**
      * add.
@@ -154,31 +154,6 @@ class UserModel
     }
 
     /**
-     * add.
-     */
-    public function addAll()
-    {
-        $sql = '
-            INSERT INTO user (firstname, sex, birthday, theme, mail, password, connection_time)
-            VALUES (:firstname, :sex, :birthday, :theme, :mail, :password, :connection_time)
-        ';
-
-        // On récupère la connextion PDO à la DB
-        $pdo = Database::dbConnect();
-        // On prépare une requête à l'exécution et retourne un objet
-        $pdoStatement = $pdo->prepare($sql);
-        // Association des valeurs aux champs de la bdd et paramètrage du retour
-        $pdoStatement->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':sex', $this->sex, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':theme', $this->theme, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':connection_time', $this->connection_time, PDO::PARAM_STR);
-        $pdoStatement->execute();
-    }
-
-    /**
      * updateInfos.
      *
      * @param mixed $firstname
@@ -191,7 +166,7 @@ class UserModel
     {
         $sql = '
             UPDATE user
-            SET firstname = :firstname, sex = :sex, birthday = :birthday, theme = :theme, mail = :mail
+            SET firstname = :firstname, sex = :sex, birthday = :birthday, mail = :mail, theme_id = :theme_id
             WHERE id = :id
         ';
         // On récupère la connextion PDO à la DB
@@ -203,8 +178,8 @@ class UserModel
         $pdoStatement->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
         $pdoStatement->bindValue(':sex', $this->sex, PDO::PARAM_STR);
         $pdoStatement->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':theme', $this->theme, PDO::PARAM_STR);
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':theme_id', $this->theme_id, PDO::PARAM_INT);
         $pdoStatement->execute();
 
         $affectedRows = $pdoStatement->rowCount();
@@ -335,26 +310,6 @@ class UserModel
     }
 
     /**
-     * Get the value of theme.
-     */
-    public function getTheme()
-    {
-        return $this->theme;
-    }
-
-    /**
-     * Set the value of theme.
-     *
-     * @return self
-     */
-    public function setTheme($theme)
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
-    /**
      * Get the value of mail.
      */
     public function getMail()
@@ -431,6 +386,26 @@ class UserModel
     public function setIs_user($is_user)
     {
         $this->is_user = $is_user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of theme_id.
+     */
+    public function getTheme_id()
+    {
+        return $this->theme_id;
+    }
+
+    /**
+     * Set the value of theme_id.
+     *
+     * @return self
+     */
+    public function setTheme_id($theme_id)
+    {
+        $this->theme_id = $theme_id;
 
         return $this;
     }

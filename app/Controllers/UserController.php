@@ -3,6 +3,7 @@
 namespace P5universFabuleux\Controllers;
 
 use P5universFabuleux\Models\UserModel;
+use P5universFabuleux\Models\ThemeModel;
 use P5universFabuleux\Utils\User;
 
 class UserController extends CoreController
@@ -180,21 +181,18 @@ class UserController extends CoreController
             'Autre' => ($user->getSex() === 'Autre') ? 'selected' : '',
         ];
 
-        $themeList = [
-            'Arc-en-ciel' => ($user->getTheme() === 'Arc-en-ciel') ? 'selected' : '',
+        $userTheme = ThemeModel::find($user->getTheme_Id());
 
-            'Plage' => ($user->getTheme() === 'Plage') ? 'selected' : '',
-
-            'Ferme' => ($user->getTheme() === 'Ferme') ? 'selected' : '',
-
-            'Château fleuri' => ($user->getTheme() === 'Château fleuri') ? 'selected' : '',
-
-            'Jungle' => ($user->getTheme() === 'Jungle') ? 'selected' : '',
-
-            'Espace' => ($user->getTheme() === 'Espace') ? 'selected' : '',
-
-            'Mountain' => ($user->getTheme() === 'Mountain') ? 'selected' : '',
-        ];
+        $themes = ThemeModel::findAllName();
+        $themeList = [];
+        foreach ($themes as $key => $theme) {
+            $item = [
+                'name' => $theme,
+                'isSelect' => (intval($user->getTheme_Id()) === $key + 1) ? 'selected' : '',
+                'id' => $key + 1,
+            ];
+            array_push($themeList, $item);
+        }
 
         $dataToViews = [
             'sexList' => $sexList,
@@ -219,7 +217,7 @@ class UserController extends CoreController
             $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
             $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
             $sex = isset($_POST['sex']) ? $_POST['sex'] : '';
-            $theme = isset($_POST['theme']) ? $_POST['theme'] : '';
+            $theme_id = isset($_POST['theme']) ? $_POST['theme'] : '';
             $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
 
             // Je traite les données si besoin
@@ -228,7 +226,7 @@ class UserController extends CoreController
             $mail = trim($mail);
 
             // Je valide les données => je cherche les erreur
-            if (empty($firstname) || empty($birthday) || empty($sex) || empty($theme) || empty($mail)) {
+            if (empty($firstname) || empty($birthday) || empty($sex) || empty($theme_id) || empty($mail)) {
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
 
@@ -245,9 +243,8 @@ class UserController extends CoreController
                 $currentUserModel->setFirstname($firstname);
                 $currentUserModel->setBirthday($birthday);
                 $currentUserModel->setSex($sex);
-                $currentUserModel->setTheme($theme);
                 $currentUserModel->setMail($mail);
-                dump($currentUserModel);
+                $currentUserModel->setTheme_id($theme_id);
                 $currentUserModel->updateInfos();
                 User::connect($currentUserModel);
 

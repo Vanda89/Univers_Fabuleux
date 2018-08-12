@@ -51,8 +51,8 @@
             <div class="form-inline d-flex justify-content-between text-capitalize col-xs-10 col-md-12 mb-4">
               <label for="wallpaper" class="form-label font-weight-bold mb-2">thème préféré :</label>
               <select class="form-control col-md-6" name="theme" id="theme" required>
-              <?php foreach ($themeList as $theme => $selected) : ?>
-                <option value="<?= $theme; ?>" class="" <?= $selected; ?>><?= $theme; ?></option>
+              <?php foreach ($themeList as $index => $theme) : ?>
+                <option value="<?= $theme['id']; ?>" class="" <?= $theme['isSelect']; ?>><?= $theme['name']; ?></option>
               <?php endforeach; ?>
               </select>
             </div>
@@ -123,3 +123,7 @@
     </div>
   </section>
 </main>
+
+<?php $this->push('js'); ?>
+<script src="<?= $basePath; ?>/js/app.js"></script>
+<?php $this->end(); ?>

@@ -65,3 +65,7 @@
     </form>
   </section>
 </main>
+
+<?php $this->push('js'); ?>
+<script src="<?= $basePath; ?>/js/app.js"></script>
+<?php $this->end(); ?>
