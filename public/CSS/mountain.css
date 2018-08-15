@@ -5,25 +5,44 @@ body {
 }
 
 section {
-  border: 15px solid #02E3FE;
-}
-
-.form-title {
-  color: #73E25F;
+  border: 15px solid #80D1EC;
 }
 
 .title-category {
-  color: #029221;
+  color: #73E25F;
 }
 
 .form-btn {
-  background-color: #029221;
+  background-color: #73E25F;
 }
 
 .form-btn:hover {
-  background-color: #02E3FE;
+  background-color: #80D1EC;
 }
 
 footer {
-  background-color: #02E3FE;
+  background-color: #80D1EC;
+}
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #73E25F;
+}
+
+#memory #normal {
+  background-color: #AFCAFF;
+}
+
+#memory #hard {
+  background-color: rgb(231, 122, 110);
+}
+
+#memory-timer {
+  background-color: #96C93C;
+}
+
+#memory .card-back {
+  background: url('../images/games/memory/mountain-card-back.jpg') no-repeat center fixed;
+  background-size: cover;
 }

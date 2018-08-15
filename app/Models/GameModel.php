@@ -9,9 +9,7 @@ class GameModel
 {
     private $id;
     private $name;
-    private $type;
-    private $recommended_age;
-    private $difficulty_level;
+    private $style;
 
     /**
      * findAll.
@@ -19,7 +17,7 @@ class GameModel
     public static function findAll()
     {
         $sql = '
-            SELECT id, name, type, recommended_age, difficulty_level
+            SELECT *
             ORDER BY name 
         ';
         // On récupère la connextion PDO à la DB
@@ -42,7 +40,7 @@ class GameModel
     {
         $start = ($page - 1) * $nbPostByPage;
         $sql = '
-            SELECT id, name, type, recommended_age, difficulty_level
+            SELECT *
             FROM game
             ORDER BY name DESC
             LIMIT '.$start.', '.$nbPostByPage.'
@@ -68,7 +66,7 @@ class GameModel
     public static function find($id)
     {
         $sql = '
-            SELECT id, name, type, recommended_age, difficulty_level
+            SELECT *
             FROM game
             WHERE id = (:id)
         ';
@@ -124,61 +122,21 @@ class GameModel
     }
 
     /**
-     * Get the value of type.
+     * Get the value of style.
      */
-    public function getType()
+    public function getStyle()
     {
-        return $this->type;
+        return $this->style;
     }
 
     /**
-     * Set the value of type.
+     * Set the value of style.
      *
      * @return self
      */
-    public function setType($type)
+    public function setStyle($style)
     {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of recommended_age.
-     */
-    public function getRecommended_age()
-    {
-        return $this->recommended_age;
-    }
-
-    /**
-     * Set the value of recommended_age.
-     *
-     * @return self
-     */
-    public function setRecommended_age($recommended_age)
-    {
-        $this->recommended_age = $recommended_age;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of difficulty_level.
-     */
-    public function getDifficulty_level()
-    {
-        return $this->difficulty_level;
-    }
-
-    /**
-     * Set the value of difficulty_level.
-     *
-     * @return self
-     */
-    public function setDifficulty_level($difficulty_level)
-    {
-        $this->difficulty_level = $difficulty_level;
+        $this->style = $style;
 
         return $this;
     }

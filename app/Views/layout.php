@@ -12,6 +12,8 @@
   <!-- Fichiers CSS -->
   <link rel="stylesheet" href="<?= $basePath; ?>/css/style.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= (isset($themeStyle)) ? $themeStyle : ''; ?>" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= (isset($gameStyle)) ? $gameStyle : ''; ?>" rel="stylesheet" type="text/css">
+                                          
   <!-- Favicon -->
   <!-- <link rel="icon" href="/images/favicon.png" type="image/x-icon"> -->
   <!-- Fichier Fontawesome -->

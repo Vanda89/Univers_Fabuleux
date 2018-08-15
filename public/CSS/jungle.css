@@ -8,10 +8,6 @@ section {
   border: 15px solid #21A08F;
 }
 
-.form-title {
-  color: #48CA4E;
-}
-
 .title-category {
   color: #FF6370;
 }
@@ -26,4 +22,27 @@ section {
 
 footer {
   background-color: #21A08F;
+}
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #AFF89E;
+}
+
+#memory #normal {
+  background-color: #16B091;
+}
+
+#memory #hard {
+  background-color: #FF6370;
+}
+
+#memory-timer {
+  background-color: #3CC2AB;
+}
+
+#memory .card-back {
+  background: url('../images/games/memory/jungle-card-back.jpg') no-repeat center fixed;
+  background-size: cover;
 }

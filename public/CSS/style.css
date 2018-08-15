@@ -116,26 +116,27 @@ section {
 }
 
 .form-title {
-  font-family: 'Chela One', cursive;
   font-size: 2em;
+  font-family: 'Chela One',
+  cursive;
   font-variant: small-caps;
-  color: #BACB3E;
-  text-shadow: 0 0 5px white,
-  0 0 5px white,
-  0 0 5px white,
-  0 0 5px white,
-  0 0 5px white,
-  0 0 5px white,
-  0 0 5px white,
-  0 0 5px white;
+  color: #F7983C;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8),
+  0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 .title-category {
   font-family: 'Chela One', cursive;
+  font-variant: small-caps;
   font-size: 1.5em;
-  color: #F2E92C;
   text-shadow: 0 0 5px white,
-  0 0 5px black,
+  0 0 5px white,
   0 0 5px white;
 }
 
@@ -143,16 +144,6 @@ section {
 .rememberMe {
   color: white;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62);
-}
-
-.form-btn {
-  background-color: #BACB3E;
-  border-color: white;
-}
-
-.form-btn:hover {
-  background-color: #459A45;
-  border-color: white;
 }
 
 #reset-pswd {
@@ -165,9 +156,60 @@ section {
   border: 4px solid black;
 }
 
+
+/************************************ STYLE THEME PAR DEFAUT **************************************/
+
+section {
+  border: 15px solid #459A45;
+}
+
+.title-category {
+  color: #F2E92C;
+}
+
+.form-btn {
+  background-color: #BACB3E;
+  border-color: white;
+}
+
+.form-btn:hover {
+  background-color: #459A45;
+  border-color: white;
+}
+
 footer {
   background-color: #459A45;
 }
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #80D1EC;
+}
+
+#memory #normal {
+  background-color: #BACB3E;
+}
+
+#memory #hard {
+  background-color: #F2E92C;
+}
+
+#memory-timer {
+  background-color: #8dc546;
+}
+
+
+#memory .card-back {
+  background-image: url('../images/games/memory/card-back.jpg');
+  
+}
+
+#memory .card-back:hover {
+  background-color: gray;
+}
+
+/*****************************************  MEDIA-QUERIES *****************************************/
 
 @media screen and (min-width: 768px) {
   h1 {

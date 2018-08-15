@@ -9,12 +9,11 @@ section {
   border: 15px solid #8A6530;
 }
 
-.form-title {
-  color: #E6B451;
-}
-
 .title-category {
   color: #F9DE87;
+  text-shadow: 0 0 5px white,
+  0 0 5px black,
+  0 0 5px white;
 }
 
 .form-btn {
@@ -27,4 +26,29 @@ section {
 
 footer {
   background-color: #8A6530;
+}
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #53AA28;
+
+}
+
+#memory #normal {
+  background-color: #EFBC49;
+}
+
+#memory #hard {
+  background-color: #1BB8DB;
+
+}
+
+#memory-timer {
+  background-color: #EFBC49;
+}
+
+#memory .card-back {
+  background: url('../images/games/memory/beach-card-back.jpg') no-repeat center fixed;
+  background-size: cover;
 }

@@ -1,4 +1,3 @@
-
 html,
 body {
   background: url('../images/wallpaper/bg_farm.jpg') no-repeat center fixed;
@@ -9,12 +8,8 @@ section {
   border: 15px solid #F23F1F;
 }
 
-.form-title {
-  color: #F7A400;
-}
-
 .title-category {
-  color: #992B38;
+  color: #CB7552;
 }
 
 .form-btn {
@@ -27,4 +22,26 @@ section {
 
 footer {
   background-color: #F23F1F;
+}
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #F7A400;
+}
+
+#memory #normal {
+  background-color: #52D176;
+}
+
+#memory #hard {
+  background-color: #CB7552;
+}
+
+#memory-timer {
+  background-color: #FACC1E;
+}
+
+#memory .card-back {
+  background-image: url('../images/games/memory/farm-card-back.jpg');
 }

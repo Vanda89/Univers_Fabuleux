@@ -8,16 +8,12 @@ section {
   border: 15px solid #FCA8D4;
 }
 
-.form-title {
+.title-category {
   color: #E6B082;
 }
 
-.title-category {
-  color: #BE7F5A;
-}
-
 .form-btn {
-  background-color: #BE7F5A;
+  background-color: #E6B082;
 }
 
 .form-btn:hover {
@@ -25,5 +21,30 @@ section {
 }
 
 footer {
-   background-color: #B6774D;
+   background-color: #E6B082;
+}
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #9B4FF6;
+
+}
+
+#memory #normal {
+  background-color: #3CC2AB;
+}
+
+#memory #hard {
+  background-color: #FB4053;
+
+}
+
+#memory-timer {
+  background-color: #3CC2AB;
+}
+
+#memory .card-back {
+  background: url('../images/games/memory/castle-card-back.jpg') no-repeat center fixed;
+  background-size: cover;
 }

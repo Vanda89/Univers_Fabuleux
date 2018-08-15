@@ -9,35 +9,35 @@
       </li>
 
       <li class="hidden-nav-item d-flex flex-column align-items-center p-0">
-        <a href="<?= $router->generate('game_game'); ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
+        <a href="<?= $router->generate('game_game').'?id=1'; ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
           <img src="<?= $basePath; ?>/images/icons/paint-palette.png" alt="" class="hidden-nav-icon">
           <h2 class="hidden-nav-title paint">dessin</h2>
         </a>
       </li>
 
       <li class="hidden-nav-item d-flex flex-column align-items-center  p-0">
-        <a href="<?= $router->generate('game_game'); ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
+        <a href="<?= $router->generate('game_game').'?id=2'; ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
           <img src="<?= $basePath; ?>/images/icons/cards.png" alt="" class="hidden-nav-icon">
           <h2 class="hidden-nav-title memory">memory</h2>
         </a>
       </li>
 
       <li class="hidden-nav-item d-flex flex-column align-items-center  p-0">
-        <a href="<?= $router->generate('game_game'); ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
+        <a href="<?= $router->generate('game_game').'?id=3'; ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
           <img src="<?= $basePath; ?>/images/icons/abc.png" alt="" class="hidden-nav-icon">
           <h2 class="hidden-nav-title letters">tape-lettre</h2>
         </a>
       </li>
 
       <li class="hidden-nav-item d-flex flex-column align-items-center  p-0">
-        <a href="<?= $router->generate('game_game'); ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
+        <a href="<?= $router->generate('game_game').'?id=4'; ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
           <img src="<?= $basePath; ?>/images/icons/mystery-image.png" alt="" class="hidden-nav-icon">
           <h2 class="hidden-nav-title mystery">image mystère</h2>
         </a>
       </li>
 
       <li class="hidden-nav-item d-flex flex-column align-items-center  p-0">
-        <a href="<?= $router->generate('game_game'); ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
+        <a href="<?= $router->generate('game_game').'?id=5'; ?>" class="hidden-nav-link text-uppercase d-flex flex-column align-items-center btn">
           <img src="<?= $basePath; ?>/images/icons/bubbles.png" alt="" class="hidden-nav-icon">
           <h2 class="hidden-nav-title bubbles">éclate-bulle</h2>
         </a>

@@ -35,7 +35,7 @@ class Application
         // CGU
         $this->router->map('GET', '/cgu', 'MainController#cgu', 'main_cgu');
         // 1 jeu
-        $this->router->map('GET', '/game[i:id]', 'GameController#showGame', 'game_game');
+        $this->router->map('GET', '/game', 'MainController#showGame', 'game_game');
         // Mentions légales
         $this->router->map('GET', '/legal-notice', 'MainController#legalNotice', 'main_legalnotice');
         // Inscription

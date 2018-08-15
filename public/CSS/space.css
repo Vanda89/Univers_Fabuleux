@@ -8,16 +8,12 @@ section {
   border: 15px solid #547181;
 }
 
-.form-title {
+.title-category {
   color: #D54500;
 }
 
-.title-category {
-  color: #ED8700;
-}
-
 .form-btn {
-  background-color: #ED8700;
+  background-color: #D54500;
 }
 
 .form-btn:hover {
@@ -26,4 +22,27 @@ section {
 
 footer {
   background-color: #547181;
+}
+
+/********** MEMORY **********/
+
+#memory #easy {
+  background-color: #C06B00;
+}
+
+#memory #normal {
+  background-color: #1C5C66;
+}
+
+#memory #hard {
+  background-color: #AA3500;
+}
+
+#memory-timer {
+  background-color: #F0CAA6;
+}
+
+#memory .card-back {
+  background: url('../images/games/memory/space-card-back.jpg') no-repeat center fixed;
+  background-size: cover;
 }
