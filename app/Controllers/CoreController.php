@@ -27,19 +27,21 @@ abstract class CoreController
         // Stockage de AltoRouter
         $this->router = $app->getRouter();
 
-        $connectedUser = User::isConnected() ? User::getConnectedUser() : false; // $connectedUser => user connecté
+        $connectedUser = false;
+        // $connectedUser = User::isConnected() ? User::getConnectedUser() : false; // $connectedUser => user connecté
+        $userTheme = null;
+        $themeStyle = null;
 
-        $userTheme = User::isConnected() ? ThemeModel::find($connectedUser->getTheme_id()) : '';
+        // $userTheme = User::isConnected() ? ThemeModel::find($connectedUser->getTheme_id()) : '';
 
+        // $themeStyle = User::isConnected() ? $userTheme->getStyle() : '';
         // \dump($userTheme->getName());
-        $themeStyle = User::isConnected() ? $userTheme->getStyle() : '';
 
-        // if (User::isConnected()) {
-
-        // }
-        // else {
-
-        // }
+        if (User::isConnected() === true) {
+            $connectedUser = User::getConnectedUser();
+            $userTheme = ThemeModel::find($connectedUser->getTheme_id());
+            $themeStyle = $userTheme->getStyle();
+        }
 
         // On transmet des données à toutes les views
         $this->templateEngine->addData([

@@ -41,6 +41,10 @@ class UserController extends CoreController
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
 
+            if (preg_match('#^([0-9]{2})([/-])([0-9]{2})\2([0-9]{4})$#', $birthday, $m) == 1 && checkdate($m[3], $m[1], $m[4])) {
+                $errorList[] = 'Date non valide';
+            }
+
             if (filter_var($mail, FILTER_VALIDATE_EMAIL) === false) {
                 $errorList[] = 'Adresse mail invalide';
             }
