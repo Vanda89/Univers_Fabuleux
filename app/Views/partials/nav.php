@@ -87,5 +87,4 @@
       </ul>
     </div>
   </nav>
-  <div class="hidden-tag"></div>
 </div>

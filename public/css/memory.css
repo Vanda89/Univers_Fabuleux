@@ -1,29 +1,12 @@
-.game-header {
-  height: 15em;
-}
-
-.game-header h1 {
-  font-family: 'Chela One', cursive;
-  font-variant: small-caps;
-  font-size: 3.9em;
+#memory-title {
   color: #3A9DD8;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8);
-}
-
-.game-header .instructions {
-  text-align: center;
 }
 
 #memory {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
+
 }
 
 #memory-board {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   border-radius: 15px;
 }
 
@@ -91,29 +74,6 @@
   transform: rotateY(0deg);
 }
 
-#memory .difficulty-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#memory .btn {
-  font-size: 2rem;
-  color: white;
-  margin-left: 2rem;
-  display: inline-block;
-  padding: 2rem;
-  transition: 0.3s;
-  border-color: white;
-  border-radius: 5px;
-}
-
-#memory .btn:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-  box-shadow: 1px 1px 20px black;
-}
-
 
 @media screen and (min-width: 540px) {
   #memory .card,
@@ -128,9 +88,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  #memory {
-    width: 20em;
-  }
  
   #memory .card,
   #memory .card-back,
@@ -141,12 +98,10 @@
   #memory .card-front {
     background: url('../images/games/memory/cards-sm.png');
   }
+
 }
 
 @media screen and (min-width: 1024px) {
-  #memory {
-    width: 30em;
-  }
 
   #memory .card,
   #memory .card-back,
@@ -160,9 +115,7 @@
 }
 
 @media screen and (min-width: 1440px) {
-  #memory {
-    width: 45em;
-  }
+
 
   #memory .card,
   #memory .card-back,
@@ -170,7 +123,10 @@
     height: 100px;
     width: 100px;
   }
+
   #memory .card-front {
     background: url('../images/games/memory/cards.jpg');
   }
+
+
 }

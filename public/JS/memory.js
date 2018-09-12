@@ -1,105 +1,59 @@
 var memory = {
-    // Niveau de difficulté
-    mode: null,
-    // Nombre total de paires de cartes sur le plateau
-    totalPair: 0,
-    // Nombre de paires trouvées
-    playerPair: 0,
-    // Tableau pour stocker les cartes révélées
-    cardsReveal: [],
-    // Permet d'afficher ou non une nouvelle carte
-    canShowingCard: true,
+  // Niveau de difficulté
+  mode: null,
+  // Nombre total de paires de cartes sur le plateau
+  totalPair: 0,
+  // Nombre de paires trouvées
+  playerPair: 0,
+  // Tableau pour stocker les cartes révélées
+  cardsReveal: [],
+  // Permet d'afficher ou non une nouvelle carte
+  canShowingCard: true,
 
-    init: function () {
-      console.log('memory init');
-      // Lancement du jeu
-      memory.startGame();
-    },
+  gameStart: false,
 
-    startGame: function () {
-      // Génère le conteneur 'game' en HTML
-      $('<div>').attr('id', 'memory')
+  init: function () {
+    console.log('memory init');
+    // Lancement du jeu
+    memory.startGame();
+  },
+
+  startGame: function () {
+    memory.gameStart = true;
+    // Génère le conteneur 'game' en HTML
+    $('<div>').attr('id', 'memory')
+      .addClass('game d-flex flex-column justify-content-between align-items-center')
       .appendTo('#memory-container')
-     
-      // Génère le menu et démarre le jeu avec la difficulté appropriée
-      memory.createMenu();
-    },
 
-    shuffleCards: function (array) {
-      // Permet de mélanger le tableau de cartes
-      for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var x = array[i];
-        array[i] = array[j];
-        array[j] = x;
-      }
-      return array;
-    },
+    // Génère le menu et démarre le jeu avec la difficulté appropriée
+    memory.createMenu();
+  },
 
-    isSameCards: function () {
-      // Compare si les deux cartes révélées ont le même id
-      if (memory.cardsReveal[0].data('id') === memory.cardsReveal[1].data('id')) {
-        // Incrémente le nombre de paires trouvées
-        memory.playerPair++;
-        // Teste si le nombre total de paires trouvé est égal au nombre total de paires sur le plateau
-        if (memory.playerPair == memory.totalPair) {
-          // Gagné
-          setTimeout(memory.showWin, 500)
-        }
-        // Réinitialise les cartes actuelles pour les comparer en mémoire
-        memory.cardsReveal = [];
-      } else {
-        // Empêche de cliquer sur une autre carte
-        memory.canShowingCard = false;
-        // Utilisation de setTimeout pour cacher les cartes en une seconde
-        setTimeout(memory.hideCard, 1000);
-      }
+  shuffleCards: function (array) {
+    // Permet de mélanger le tableau de cartes
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var x = array[i];
+      array[i] = array[j];
+      array[j] = x;
+    }
+    return array;
+  },
 
-    },
-
-    hideCard: function () {
-      // Cache les cartes avec un effet de flip
-       // data = isPair empêche un nouvel affichage si une paire est trouvée
-      for (var card = 0; card < memory.cardsReveal.length; card++) {
-        memory.cardsReveal[card].removeClass('flip');
-        memory.cardsReveal[card].removeClass('flip');
-        memory.cardsReveal[card].data('isPair', false);
-        memory.canShowingCard = true;
-      }
-      // Réinitialise les cartes actuelles pour les comparer en mémoire
-      memory.cardsReveal = [];
-    },
-
-    showCard: function () {
-      // Fait apparaître directement les cartes avec un effet de flip si les conditions sont bonnes
-      // data = isPair empêche un nouvel affichage si une paire est trouvée
-      if (!$(this).data('isPair') && memory.cardsReveal.length < 2 && memory.canShowingCard) {
-        $(this).data('isPair', true);
-        $(this).addClass('flip');
-        $(this).addClass('flip');
-        // Ajoute une carte révélée en mémoire
-        memory.cardsReveal.push($(this));
-      }
-      // S'il y a 2 cartes en mémoire et si on peut plus cliqué sur une autre carte, les cartes sont comparées
-      if (memory.cardsReveal.length === 2 && memory.canShowingCard) {
-        memory.isSameCards();
-      }
-    },
-
-    createMenu: function () {
+  createMenu: function () {
       // Génération en HTML des boutons de difficulté et de leur conteneur
-      $('<div>').attr('id', 'btn-container').addClass('difficulty-container')
+      $('<div>').addClass('difficulty-container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-around align-items-center')
         .append($('<div>')
           .attr('id', 'easy')
-          .addClass('btn')
+          .addClass('btn mb-4 mr-lg-2')
           .text('Facile'))
         .append($('<div>')
           .attr('id', 'normal')
-          .addClass('btn')
+          .addClass('btn mb-4 mr-lg-2')
           .text('Normal'))
         .append($('<div>')
           .attr('id', 'hard')
-          .addClass('btn')
+          .addClass('btn  mb-4 mr-lg-2')
           .text('Difficile'))
         .appendTo('#memory');
       // Ajout d'un événement aux boutons pour générer le jeu avec la difficulté memoryropriée
@@ -116,21 +70,21 @@ var memory = {
 
     createBoard: function (level) {
       // Supprime l'interface précédente
-      $('#btn-container').remove();
+      $('.difficulty-container').remove();
 
       // Objets servant à paramètrer le jeu
       var easy = {
-        timer: 1000,
+        timer: 4000,
         board: 12,
         mode: 'Facile',
       };
       var normal = {
-        timer: 1500,
+        timer: 3500,
         board: 18,
         mode: 'Normal',
       };
       var hard = {
-        timer: 2000,
+        timer: 3000,
         board: 24,
         mode: 'Difficile',
       };
@@ -159,9 +113,12 @@ var memory = {
       // Génération du plateau de jeu avec HTML la taille appropriée
       $('<div>')
         .attr('id', 'memory-board')
+        .addClass('game-board d-flex flex-wrap justify-content-between align-items-center col-sm-10 col-xl-8')
         .appendTo('#memory')
       // Ajoute les cartes au plateau
       memory.generateCards(cardsNumber);
+      // 
+      memory.score();
       // Et lance le compteur
       memory.startTimer(timer);
     },
@@ -186,7 +143,7 @@ var memory = {
             .append($('<div>').addClass('card-front').css('background-position', '0px ' + backgroundPos + 'px')));
         pair++;
 
-        if(screen.width >= 1440) {
+        if (screen.width >= 1440) {
           cardsSize = 100;
         } else if (window.screen.width >= 1024) {
           cardsSize = 100;
@@ -210,34 +167,157 @@ var memory = {
       })
     },
 
-    startTimer: function (timer) {
-      // Quand le compteur est fini, le jeu est fini
-      $('<div>').attr('id', 'memory-timer').addClass('mb-5').appendTo('#memory');
-      $('#memory-timer').animate({
-        width: "100%"
-      }, timer * 60, memory.showLoose);
-    },
+  isSameCards: function () {
 
-    // Messages après fin du jeu
-    showWin: function () {
-      alert("Gagné !")
-      memory.resetGame(true)
-    },
-    showLoose: function () {
-      alert("Perdu !")
-      memory.resetGame(false)
-    },
+    var delayClean = 2800;
+    var delayShowResult = 350;
 
-    resetGame: function (isWin) {    
-      // Réinitialise tout le jeu
-      $('#memory').remove();
-      memory.playerPair = 0;
-      memory.totalPair = 0;
-      memory.canShowingCard = true;
+    // Compare si les deux cartes révélées ont le même id
+    if (memory.cardsReveal[0].data('id') === memory.cardsReveal[1].data('id')) {
+      // Incrémente le nombre de paires trouvées
+      memory.playerPair++;
+      //
+      setTimeout(function() {
+        memory.showResult(true);
+      }, delayShowResult);
+
+      //
+      memory.updateScore();
+      //
+      setTimeout(function() {
+        $('.resultMessage').text('');
+      }, delayClean);
+      // Teste si le nombre total de paires trouvé est égal au nombre total de paires sur le plateau
+      if (memory.playerPair == memory.totalPair) {
+        // Gagné
+      memory.showEndResult();
+      }
+      // Réinitialise les cartes actuelles pour les comparer en mémoire
       memory.cardsReveal = [];
-      //restarting game
-      memory.startGame();
+
+    } else {
+      // Empêche de cliquer sur une autre carte
+      memory.canShowingCard = false;
+      //
+      setTimeout(function() {
+        memory.showResult(false);
+      }, delayShowResult);
+
+      setTimeout(function () {
+        $('.resultMessage').text('');
+      }, delayClean);
+
+      // Utilisation de setTimeout pour cacher les cartes
+      setTimeout(memory.hideCard, delayClean);
     }
+  },
+
+  hideCard: function () {
+    // Cache les cartes avec un effet de flip
+    // data = isPair empêche un nouvel affichage si une paire est trouvée
+    for (var card = 0; card < memory.cardsReveal.length; card++) {
+      memory.cardsReveal[card].removeClass('flip');
+      memory.cardsReveal[card].removeClass('flip');
+      memory.cardsReveal[card].data('isPair', false);
+      memory.canShowingCard = true;
+    }
+    // Réinitialise les cartes actuelles pour les comparer en mémoire
+    memory.cardsReveal = [];
+  },
+
+  showCard: function () {
+    // Fait apparaître directement les cartes avec un effet de flip si les conditions sont bonnes
+    // data = isPair empêche un nouvel affichage si une paire est trouvée
+    if (!$(this).data('isPair') && memory.cardsReveal.length < 2 && memory.canShowingCard) {
+      $(this).data('isPair', true);
+      $(this).addClass('flip');
+      $(this).addClass('flip');
+      // Ajoute une carte révélée en mémoire
+      memory.cardsReveal.push($(this));
+    }
+    // S'il y a 2 cartes en mémoire et si on peut plus cliqué sur une autre carte, les cartes sont comparées
+    if (memory.cardsReveal.length === 2 && memory.canShowingCard) {
+      memory.isSameCards();
+    }
+  },
+
+  startTimer: function (timer) {
+    // Quand le compteur est fini, le jeu est fini
+    $('<div>').addClass('game-timer align-self-start mb-5').appendTo('#memory');
+    $('.game-timer').animate({
+      width: "100%"
+    }, timer * 60, memory.showEndResult);
+  },
+
+  score: function () {
+     $('<div>').attr('id', 'memory-infos').addClass('game-infos d-flex flex-column-reverse align-items-center justify-content-around')
+       .append($('<div>')
+         .addClass('resultMessage'))
+       .append($('<div>').attr('id', 'memory-score-container').addClass('score-container d-flex flex-row justify-content-around')
+         .append($('<div>')
+           .addClass('score pr-1'))
+         .append($('<i>')
+           .addClass('star fas fa-star d-flex')))
+       .appendTo('#memory-board');
+      
+    // this.score = this.currentIndex;
+    $('.score').text(memory.playerPair);
+
+  },
+
+  updateScore: function () {
+    $('.score').text(memory.playerPair);
+  },
+
+  // Messages après fin du jeu
+  showResult: function (isWin) {
+    // console.log("Gagné !");
+    console.log("Gagné !");
+    var result = (isWin === true) ? 'bravo !' : 'essaye encore !';
+    $('.resultMessage').text(result);
+  },
+
+  showEndResult: function () {
+    $('#memory-board').remove();
+    $('.game-timer').remove();
+
+    $('<div>').attr('id', 'memory-end-result').addClass('end-game-infos d-flex flex-column align-items-center justify-content-between')
+      .append($('<div>')
+        .addClass('messageEndGame d-flex flex-column justify-content-around text-center')
+        .append($('<p>').addClass('text-uppercase mb-0').text('Bravo !'))
+        .append($('<p>').text('Ton score est de :')))
+      .append($('<div>').addClass('score-container d-flex flex-row justify-content-around my-5')
+        .append($('<p>')
+          .addClass('score pr-1')
+          .text(memory.playerPair))
+        .append($('<i>')
+          .addClass('star fas fa-star d-flex')))
+      .append($('<button>')
+        .addClass('replay')
+        .addClass('btn animated pulse infinite d-flex justify-content-center align-items-center mb-4 mb-lg-0')
+        .text('Rejouer'))
+      .appendTo('#memory');
+
+    memory.gameStart = false;
+
+    $('.replay').click(function () {
+      memory.resetGame();
+    });
+
+  },
+
+  resetGame: function () {
+    // Réinitialise tout le jeu
+    $('#memory').remove();
+    memory.playerPair = 0;
+    memory.totalPair = 0;
+    memory.canShowingCard = true;
+    memory.cardsReveal = [];
+    //restarting game
+    memory.startGame();
+    memory.updateScore();
+
+  }
 };
 
 $(memory.init);
