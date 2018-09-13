@@ -5,7 +5,8 @@ body {
   background-size: cover;
 }
 
-section {
+section,
+.game-container {
   border: 15px solid #8A6530;
 }
 
@@ -22,6 +23,14 @@ section {
 
 .form-btn:hover {
   background-color: #E6B451;
+}
+
+.game .game-timer {
+  background-color: #EFBC49;
+}
+
+.end-game-infos .replay {
+  background-color: #EFBC49;
 }
 
 footer {
@@ -44,11 +53,54 @@ footer {
 
 }
 
-#memory-timer {
+#memory .card-back {
+  background-image: url('../images/games/memory/beach-card-back.jpg');
+}
+
+/******** TYPELETTER ********/
+#typeLetter #uppercase {
+  background-color: #53AA28;
+}
+
+#typeLetter #lowercase {
   background-color: #EFBC49;
 }
 
-#memory .card-back {
-  background: url('../images/games/memory/beach-card-back.jpg') no-repeat center fixed;
-  background-size: cover;
+.playerLetters {
+  text-shadow: 0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49,
+    0 0 12px #EFBC49;
+}
+
+#playerLetter {
+  -webkit-animation: animborder 2s infinite;
+  animation: animborder 2s infinite;
+}
+
+@-webkit-keyframes animborder {
+  50% {
+    border-color: #EFBC49;
+  }
+}
+
+@keyframes animborder {
+  50% {
+    border-color: #EFBC49;
+  }
 }

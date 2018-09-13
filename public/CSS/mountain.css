@@ -4,7 +4,8 @@ body {
   background-size: cover;
 }
 
-section {
+section,
+.game-container {
   border: 15px solid #80D1EC;
 }
 
@@ -18,6 +19,14 @@ section {
 
 .form-btn:hover {
   background-color: #80D1EC;
+}
+
+.game .game-timer {
+  background-color: rgb(231, 122, 110);
+}
+
+.end-game-infos .replay {
+  background-color: #AFCAFF;
 }
 
 footer {
@@ -38,11 +47,54 @@ footer {
   background-color: rgb(231, 122, 110);
 }
 
-#memory-timer {
-  background-color: #96C93C;
+#memory .card-back {
+  background-image: url('../images/games/memory/mountain-card-back.jpg');
 }
 
-#memory .card-back {
-  background: url('../images/games/memory/mountain-card-back.jpg') no-repeat center fixed;
-  background-size: cover;
+/******** TYPELETTER ********/
+#typeLetter #uppercase {
+  background-color: #73E25F;
+}
+
+#typeLetter #lowercase {
+  background-color: rgb(231, 122, 110);
+}
+
+.playerLetters {
+  text-shadow: 0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F,
+    0 0 12px #73E25F;
+}
+
+#playerLetter {
+  -webkit-animation: animborder 2s infinite;
+  animation: animborder 2s infinite;
+}
+
+@-webkit-keyframes animborder {
+  50% {
+    border-color: #73E25F;
+  }
+}
+
+@keyframes animborder {
+  50% {
+    border-color: #73E25F;
+  }
 }

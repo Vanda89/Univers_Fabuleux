@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One|Spirax|Chela+One');
-/********************************LAYOUT*******************************/
 
+/********************************LAYOUT*******************************/
 html,
 body {
   width: 100%;
@@ -16,7 +16,7 @@ body {
 
 #hidden-header {
   position: fixed;
-  height: 6em;
+  height: 6rem;
   background-color: rgba(0, 0, 0, 0.32);
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .home-title {
-  height: 2.5em;
+  height: 6.7rem;
 }
 
 .title-link {}
@@ -41,7 +41,7 @@ body {
 }
 
 #hamburger-menu {
-  width: 3em;
+  width: 3rem;
 }
 
 .nav-title,
@@ -52,13 +52,13 @@ body {
 }
 
 .nav-title {
-  font-size: 0.9em;
+  font-size: 0.9rem;
   /* color: white; */
 }
 
 .hidden-nav-title {
   display: none;
-  font-size: 0.8em;
+  font-size: 0.8rem;
 }
 
 .home {
@@ -100,15 +100,14 @@ body {
 }
 
 .nav-icon {
-  width: 3em;
+  width: 3rem;
 }
 
 .hidden-nav-icon {
-  width: 2.5em;
+  width: 2.5rem;
 }
 
 section {
-  min-height: 50em;
   font-family: 'Fredoka One', cursive;
   background-color: rgba(255, 255, 255, 0.52);
   border: 15px solid #459A45;
@@ -116,28 +115,28 @@ section {
 }
 
 .form-title {
-  font-size: 2em;
+  font-size: 3.2rem;
   font-family: 'Chela One',
-  cursive;
+    cursive;
   font-variant: small-caps;
   color: #F7983C;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8),
-  0 0 5px rgba(255, 255, 255, 0.8);
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 .title-category {
   font-family: 'Chela One', cursive;
   font-variant: small-caps;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   text-shadow: 0 0 5px white,
-  0 0 5px white,
-  0 0 5px white;
+    0 0 5px white,
+    0 0 5px white;
 }
 
 .form-label,
@@ -147,19 +146,147 @@ section {
 }
 
 #reset-pswd {
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 .stats-game {
-  width: 12em;
-  height: 8em;
+  width: 12rem;
+  height: 8rem;
   border: 4px solid black;
+}
+
+.errors-hide {
+  display: none;
+  width: 40%;
+  text-align: center;
+}
+
+.close {
+  font-size: 2.2rem;
+}
+
+/********************************GENERAL GAMES********************/
+.game-container {
+  height: 45rem;
+}
+
+.game {
+  height: 35rem;
+}
+
+.game-container .game-header {
+  height: 13rem;
+}
+
+.game-container .game-title {
+  font-family: 'Chela One', cursive;
+  font-variant: small-caps;
+  font-size: 4.2rem;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 5px rgba(0, 0, 0, 0.3),
+    0 0 5px rgba(0, 0, 0, 0.3),
+    0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.game-header .instructions {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.game .difficulty-container {
+  width: 12rem;
+  margin-top: 2.5rem;
+}
+
+.game .btn {
+  display: inline-block;
+  width: 100%;
+  padding: 2rem 0;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-color: white;
+  border-radius: 5px;
+}
+
+.game .btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-box-shadow: 1px 1px 20px black;
+  box-shadow: 1px 1px 20px black;
+}
+
+.game .game-infos {
+  height: 7rem;
+  width: 100%;
+}
+
+.game-infos .resultMessage {
+  height: 2rem;
+  font-size: 1.8rem;
+  color: rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+}
+
+.game-infos .score-container {
+  width: 4rem;
+}
+
+.score-container .score {
+  font-size: 1.8rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.score-container .star {
+  padding-top: 0.4rem;
+  font-size: 1.5rem;
+  color: #F2DB00;
+  text-shadow: 2px 2px 8px #fbb144,
+    2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.game .end-game-infos {
+  height: 75%;
+}
+
+.end-game-infos .messageEndGame {
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.messageEndGame .bravo {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 8px white,
+    2px 2px 8px white,
+    2px 2px 8px white,
+    2px 2px 8px white,
+    2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 
 /************************************ STYLE THEME PAR DEFAUT **************************************/
 
-section {
+.game-container {
   border: 15px solid #459A45;
 }
 
@@ -177,12 +304,22 @@ section {
   border-color: white;
 }
 
+.game .game-timer {
+  height: 2.5rem;
+  background-color: #8dc546;
+  border-radius: 5px;
+}
+
+.end-game-infos .replay {
+  padding: 1.5rem;
+  background-color: #BACB3E;
+}
+
 footer {
   background-color: #459A45;
 }
 
 /********** MEMORY **********/
-
 #memory #easy {
   background-color: #80D1EC;
 }
@@ -195,101 +332,222 @@ footer {
   background-color: #F2E92C;
 }
 
-#memory-timer {
-  background-color: #8dc546;
-}
-
-
 #memory .card-back {
-  background-image: url('../images/games/memory/card-back.jpg');
-  
+  background-image: url('../images/games/memory/rainbow-card-back.jpg');
+  background-size: contain;
 }
 
 #memory .card-back:hover {
   background-color: gray;
 }
 
-/*****************************************  MEDIA-QUERIES *****************************************/
+/******** TYPELETTER ********/
+#typeLetter #uppercase {
+  background-color: #BACB3E;
+}
 
-@media screen and (min-width: 768px) {
-  h1 {
-    height: 1.5em;
+#typeLetter #lowercase {
+  background-color: #F2E92C;
+}
+
+.playerLetters {
+  text-shadow: 0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648,
+    0 0 12px #8EC648;
+}
+
+#playerLetter {
+  -webkit-animation: animborder 2s infinite;
+  animation: animborder 2s infinite;
+}
+
+@-webkit-keyframes animborder {
+  50% {
+    border-color: #BACB3E;
   }
+}
+
+@keyframes animborder {
+  50% {
+    border-color: #BACB3E;
+  }
+}
+
+/*****************************************  MEDIA-QUERIES *****************************************/
+@media screen and (min-width: 768px) {
+
+  html,
+  body {
+    font-size: 18px;
+  }
+
   .title-mobile {
     display: none;
   }
+
   .full-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
   }
+
   .nav-title {
-    font-size: 1em;
+    /* font-size: 1rem; */
   }
+
   .hidden-nav-icon {
-    width: 3em;
+    width: 3rem;
   }
+
   .hidden-nav-title {
     display: block;
   }
+
   #hidden-header nav {
     display: block !important;
   }
 
-  .form-title,
-  .form-title,
   .form-title {
-    font-size: 2.5em;
+    /* font-size: 2.5rem; */
+  }
+
+  /*******************************GAMES*******************************/
+  .game-header {}
+
+  .game-title {
+    /* margin: 4rem 0; */
+  }
+
+  .game-header .instructions {}
+
+  .game .difficulty-container {
+    width: 14rem;
+  }
+
+  .game .btn {
+    font-size: 2.5rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .full-title {
-    width: 25em;
+
+  html,
+  body {
+    font-size: 21px;
   }
+
+  .home-title {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  .full-title {
+    /* width: 25rem; */
+  }
+
   .nav-item:hover {
+    -webkit-animation: bounce 0.45s ease infinite alternate;
     animation: bounce 0.45s ease infinite alternate;
   }
-  @keyframes bounce {
+
+  @-webkit-keyframes bounce {
     from {
+      -webkit-transform: translateY(0);
       transform: translateY(0);
     }
+
     to {
+      -webkit-transform: translateY(-20px);
       transform: translateY(-20px);
     }
   }
-  .nav-link {}
-  .nav-link:hover {}
-  .nav-title {
-    font-size: 0.8em;
+
+  @keyframes bounce {
+    from {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    to {
+      -webkit-transform: translateY(-20px);
+      transform: translateY(-20px);
+    }
   }
-  .nav-icon {
-    font-size: 1.2em;
+
+  .game {
+    width: 100%;
   }
-  .form-title,
-  .form-title,
-  .form-title {
-    font-size: 3.8em;
+
+  .game .difficulty-container {
+    width: 90%;
   }
-  .title-category {
-    font-size: 2em;
+
+  .game .btn {
+    width: 13rem;
   }
- 
-  .form-label {
-    font-size: 1.2em;
+
+  .game .btn:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-box-shadow: 1px 1px 20px black;
+    box-shadow: 1px 1px 20px black;
   }
-  .rememberMe {}
-  .games-row {}
+
+  .game .game-infos {
+    height: 10rem;
+  }
+
+  /* .end-game-infos .replay {
+    padding: 1.7rem 0;
+  } */
 }
 
 @media screen and (min-width: 1440px) {
+
+  html,
+  body {
+    font-size: 23px;
+  }
+
   .nav-title,
   .hidden-nav-title {
     font-size: 1.2em;
   }
+
   .nav-icon {
     width: 3.5em;
   }
+
   .hidden-nav-icon {
     width: 3em;
   }
+
   .profile-form {}
+
+  /* 
+  .game .game-board {
+    width: 65%;
+  } */
+
+  .game .btn {
+    padding: 2.2rem 0rem;
+  }
+
 }

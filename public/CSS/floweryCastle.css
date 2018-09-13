@@ -4,7 +4,8 @@ body {
   background-size: cover;
 }
 
-section {
+section,
+.game-container {
   border: 15px solid #FCA8D4;
 }
 
@@ -18,6 +19,14 @@ section {
 
 .form-btn:hover {
   background-color: #FCA8D4;
+}
+
+.game .game-timer {
+  background-color: #9B4FF6;
+}
+
+.end-game-infos .replay {
+  background-color: #9B4FF6;
 }
 
 footer {
@@ -40,11 +49,54 @@ footer {
 
 }
 
-#memory-timer {
+#memory .card-back {
+  background-image: url('../images/games/memory/castle-card-back.jpg');
+}
+
+/******** TYPELETTER ********/
+#typeLetter #uppercase {
   background-color: #3CC2AB;
 }
 
-#memory .card-back {
-  background: url('../images/games/memory/castle-card-back.jpg') no-repeat center fixed;
-  background-size: cover;
+#typeLetter #lowercase {
+  background-color: #FB4053;
+}
+
+.playerLetters {
+  text-shadow: 0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053,
+    0 0 12px #FB4053;
+}
+
+#playerLetter {
+  -webkit-animation: animborder 2s infinite;
+  animation: animborder 2s infinite;
+}
+
+@-webkit-keyframes animborder {
+  50% {
+    border-color: #FB4053;
+  }
+}
+
+@keyframes animborder {
+  50% {
+    border-color: #FB4053;
+  }
 }

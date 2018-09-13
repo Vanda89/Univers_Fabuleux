@@ -4,7 +4,8 @@ body {
   background-size: cover;
 }
 
-section {
+section,
+.game-container {
   border: 15px solid #F23F1F;
 }
 
@@ -18,6 +19,14 @@ section {
 
 .form-btn:hover {
   background-color: #F7A400;
+}
+
+.game .game-timer {
+  background-color: #FACC1E;
+}
+
+.end-game-infos .replay {
+  background-color: #EFBC49;
 }
 
 footer {
@@ -38,10 +47,54 @@ footer {
   background-color: #CB7552;
 }
 
-#memory-timer {
-  background-color: #FACC1E;
-}
-
 #memory .card-back {
   background-image: url('../images/games/memory/farm-card-back.jpg');
+}
+
+/******** TYPELETTER ********/
+#typeLetter #uppercase {
+  background-color: #F7A400;
+}
+
+#typeLetter #lowercase {
+  background-color: #52D176;
+}
+
+.playerLetters {
+  text-shadow: 0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #CB7552,
+    0 0 12px #EFBC49;
+}
+
+#playerLetter {
+  -webkit-animation: animborder 2s infinite;
+  animation: animborder 2s infinite;
+}
+
+@-webkit-keyframes animborder {
+  50% {
+    border-color: #CB7552;
+  }
+}
+
+@keyframes animborder {
+  50% {
+    border-color: #CB7552;
+  }
 }

@@ -4,7 +4,8 @@ body {
   background-size: cover;
 }
 
-section {
+section,
+.game-container {
   border: 15px solid #547181;
 }
 
@@ -20,6 +21,14 @@ section {
   background-color: #547181;
 }
 
+.game .game-timer {
+  background-color: #F0CAA6;
+}
+
+.end-game-infos .replay {
+  background-color: #F0CAA6;
+}
+
 footer {
   background-color: #547181;
 }
@@ -27,7 +36,7 @@ footer {
 /********** MEMORY **********/
 
 #memory #easy {
-  background-color: #C06B00;
+  background-color: #FF7F00;
 }
 
 #memory #normal {
@@ -38,11 +47,54 @@ footer {
   background-color: #AA3500;
 }
 
-#memory-timer {
-  background-color: #F0CAA6;
+#memory .card-back {
+  background-image: url('../images/games/memory/space-card-back.jpg');
 }
 
-#memory .card-back {
-  background: url('../images/games/memory/space-card-back.jpg') no-repeat center fixed;
-  background-size: cover;
+/******** TYPELETTER ********/
+#typeLetter #uppercase {
+  background-color: #FF7F00;
+}
+
+#typeLetter #lowercase {
+  background-color: #AA3500;
+}
+
+.playerLetters {
+  text-shadow: 0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00,
+    0 0 12px #FF7F00;
+}
+
+#playerLetter {
+  -webkit-animation: animborder 2s infinite;
+  animation: animborder 2s infinite;
+}
+
+@-webkit-keyframes animborder {
+  50% {
+    border-color: #FF7F00;
+  }
+}
+
+@keyframes animborder {
+  50% {
+    border-color: #FF7F00;
+  }
 }
