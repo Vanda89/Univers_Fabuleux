@@ -13,7 +13,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarToggler">
-      <ul class="navbar-nav  d-flex flex-row flex-wrap flex-md-nowrap justify-content-center justify-content-md-around col-md-12"
+      <ul class="navbar-nav  d-flex flex-row flex-wrap flex-md-nowrap justify-content-around justify-content-md-around col-md-12"
         id="menu">
         <li class="nav-item active d-flex flex-column align-items-center col-4 col-md p-0">
           <a href="<?= $router->generate('main_home'); ?>" class="nav-link text-uppercase d-flex flex-column align-items-center btn ">
@@ -58,26 +58,26 @@
         </li>
 
         <?php if ($connectedUser === false) : ?>
-        <li class="nav-item d-flex flex-column align-items-center col-6 col-md p-0">
+        <li class="nav-item d-flex flex-column align-items-center col-6 col-md mr-0 p-0">
           <a href="<?= $router->generate('user_login'); ?>" class="nav-link text-uppercase d-flex flex-column align-items-center btn">
             <img src="<?= $basePath; ?>/images/icons/connection.png" alt="" class="nav-icon">
             <h2 class="nav-title connection">connexion</h2>
           </a>
         </li>
-        <li class="nav-item d-flex flex-column align-items-center col-6 col-md p-0">
+        <li class="nav-item d-flex flex-column align-items-center col-6 col-md mr-0   p-0">
           <a href="<?= $router->generate('user_signup'); ?>" class="nav-link text-uppercase d-flex flex-column align-items-center btn">
             <img src="<?= $basePath; ?>/images/icons/registration.png" alt="" class="nav-icon">
             <h2 class="nav-title inscription">inscription</h2>
           </a>
         </li>
         <?php else : ?>
-        <li class="nav-item d-flex flex-column align-items-center col-6 col-md p-0">
+        <li class="nav-item d-flex flex-column align-items-center col-6 col-md mr-0  p-0">
           <a href="<?= $router->generate('user_profile'); ?>" class="nav-link text-uppercase d-flex flex-column align-items-center btn">
             <img src="<?= $basePath; ?>/images/icons/profile.png" alt="" class="nav-icon">
             <h2 class="nav-title profile">profil</h2>
           </a>
         </li>
-        <li class="nav-item d-flex flex-column align-items-center col-6 col-md p-0">
+        <li class="nav-item d-flex flex-column align-items-center col-6 col-md mr-0 p-0">
           <a href="<?= $router->generate('user_logout'); ?>" class="nav-link text-uppercase d-flex flex-column align-items-center btn">
             <img src="<?= $basePath; ?>/images/icons/exit.png" alt="" class="nav-icon">
             <h2 class="nav-title disconnection">déconnexion</h2>

@@ -1,27 +1,17 @@
 <?php $this->layout('layout', ['title' => 'Connexion']); ?>
 
 <main class="row mt-2 mb-5">
-  <section class="connection-container container d-flex flex-column align-items-center justify-content-between col-xs-12 col-md-10 col-xl-7 my-5 p-0">
+  <section class="form-container container d-flex flex-column align-items-center col-xs-12 col-md-10 col-xl-7 my-5 p-0">
     <header class="form-header row justify-content-center align-self-center text-capitalize mt-5 mb-3">
       <h2 class="form-title text-center font-weight-bold">formulaire de connexion</h2>
     </header>
-
-    <?php if (!empty($errorList)) : ?>
-    <div class="errors-container row d-none">
-      <div class="row">
-        <div id="errors" class="alert alert-danger errors-hide" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div class="errorsContent"></div>
-        </div>
-      </div>
-      <?php foreach ($errorList as $currentError) : ?>
-      <?= $currentError; ?>
-        <br>
-        <?php endforeach; ?>
-    </div>
-    <?php endif; ?>
+    
+    <div id="errors" class="alert errors-hide row " role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="errorsContent"></div>   
+    </div>   
 
     <form action="" method="post" id="formLogin" class="connection-form row d-flex justify-content-around align-items-center p-0">
       <div class="container d-flex justify-content-around align-items-center p-0">

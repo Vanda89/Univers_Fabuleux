@@ -4,13 +4,28 @@ namespace P5universFabuleux\Controllers;
 
 use P5universFabuleux\Models\UserModel;
 use P5universFabuleux\Models\ThemeModel;
+use P5universFabuleux\Models\AvatarModel;
 use P5universFabuleux\Utils\User;
 
 class UserController extends CoreController
 {
     public function signup()
     {
-        $this->show('user/registration');
+        $avatars = AvatarModel::findAll();
+        $avatarList = [];
+        foreach ($avatars as $key => $avatar) {
+            $item = [
+                'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
+                'id' => $key + 1,
+            ];
+            array_push($avatarList, $item);
+        }
+
+        $dataToViews = [
+            'avatarList' => $avatarList,
+        ];
+
+        $this->show('user/registration', $dataToViews);
     }
 
     public function signupSubmit()
@@ -22,9 +37,9 @@ class UserController extends CoreController
         if (!empty($_POST)) {
             //dump($_POST);exit;
             // Je récupère les données
+            $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
             $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
             $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
-            $sex = isset($_POST['sex']) ? $_POST['sex'] : '';
             $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
             $password = isset($_POST['password']) ? $_POST['password'] : '';
             $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
@@ -37,7 +52,7 @@ class UserController extends CoreController
             $passwordConfirm = trim($passwordConfirm);
 
             // Je valide les données => je cherche les erreurs
-            if (empty($firstname) || empty($birthday) || empty($sex) || empty($mail) || empty($password) || empty($passwordConfirm)) {
+            if (empty($avatar) || empty($firstname) || empty($birthday) || empty($mail) || empty($password) || empty($passwordConfirm)) {
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
 
@@ -69,14 +84,16 @@ class UserController extends CoreController
                 $newUserModel = new UserModel();
                 $newUserModel->setFirstname($firstname);
                 $newUserModel->setBirthday($birthday);
-                $newUserModel->setSex($sex);
                 $newUserModel->setMail($mail);
                 $newUserModel->setPassword($hashedPassword);
-                $newUserModel->setIs_user(1);
+                $newUserModel->setIs_admin(2);
+                $newUserModel->setTheme_id(1);
+                $newUserModel->setAvatar_id($avatar);
                 $newUserModel->add();
 
                 // Sauvegarde en Session de l'user
                 User::connect($newUserModel);
+                // dump($newUserModel);
                 // On envoie un JSON avec l'url du home pour la redirection
                 $this->sendJson([
                      'code' => 1,
@@ -176,35 +193,45 @@ class UserController extends CoreController
     public function profile()
     {
         $user = User::isConnected() ? User::getConnectedUser() : false;
-        // dump($user);
-        $sexList = [
-            'Fille' => ($user->getSex() === 'Fille') ? 'selected' : '',
-
-            'Garçon' => ($user->getSex() === 'Garçon') ? 'selected' : '',
-
-            'Autre' => ($user->getSex() === 'Autre') ? 'selected' : '',
-        ];
+        $isAdmin = User::isAdmin();
 
         $userTheme = ThemeModel::find($user->getTheme_Id());
-
         $themes = ThemeModel::findAllName();
         $themeList = [];
         foreach ($themes as $key => $theme) {
             $item = [
                 'name' => $theme,
+                // Rajoute un attribut HTML pour l'autosélection
                 'isSelect' => (intval($user->getTheme_Id()) === $key + 1) ? 'selected' : '',
                 'id' => $key + 1,
             ];
             array_push($themeList, $item);
         }
 
+        $userAvatar = AvatarModel::find($user->getAvatar_id());
+        $avatars = AvatarModel::findAll();
+        $avatarList = [];
+        foreach ($avatars as $key => $avatar) {
+            $item = [
+                'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
+                // Rajoute un attribut HTML pour l'autosélection
+                'isChecked' => (intval($user->getAvatar_id()) === $key + 1) ? 'checked' : '',
+                'id' => $key + 1,
+            ];
+            array_push($avatarList, $item);
+        }
+
         $dataToViews = [
-            'sexList' => $sexList,
             'themeList' => $themeList,
+            'avatarList' => $avatarList,
         ];
 
         // Exécute la view
-        $this->show('user/profile', $dataToViews);
+        if ($isAdmin === true) {
+            $this->show('user/profileAdmin', $dataToViews);
+        } elseif ($user != null) {
+            $this->show('user/profile', $dataToViews);
+        }
     }
 
     public function saveProfile()
@@ -218,9 +245,9 @@ class UserController extends CoreController
             // exit;
 
             // Je récupère les données
+            $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
             $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
             $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
-            $sex = isset($_POST['sex']) ? $_POST['sex'] : '';
             $theme_id = isset($_POST['theme']) ? $_POST['theme'] : '';
             $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
 
@@ -230,7 +257,7 @@ class UserController extends CoreController
             $mail = trim($mail);
 
             // Je valide les données => je cherche les erreur
-            if (empty($firstname) || empty($birthday) || empty($sex) || empty($theme_id) || empty($mail)) {
+            if (empty($avatar) || empty($firstname) || empty($birthday) || empty($theme_id) || empty($mail)) {
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
 
@@ -246,9 +273,9 @@ class UserController extends CoreController
                 $currentUserModel = UserModel::find($_POST['id']);
                 $currentUserModel->setFirstname($firstname);
                 $currentUserModel->setBirthday($birthday);
-                $currentUserModel->setSex($sex);
                 $currentUserModel->setMail($mail);
                 $currentUserModel->setTheme_id($theme_id);
+                $currentUserModel->setAvatar_id($avatar);
                 $currentUserModel->updateInfos();
                 User::connect($currentUserModel);
 

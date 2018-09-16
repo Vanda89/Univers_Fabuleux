@@ -18,8 +18,8 @@
       </div>
       <?php foreach ($errorList as $currentError) : ?>
       <?= $currentError; ?>
-        <br>
-        <?php endforeach; ?>
+      <br>
+      <?php endforeach; ?>
     </div>
     <?php endif; ?>
 
@@ -29,31 +29,40 @@
         <div class="row d-flex justify-content-center col-11 p-0 ">
           <h3 class="title-category my-5">Profil de l'enfant</h3>
           <div class="form-row d-flex flex-row col-12 p-0">
-            <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
+
+            <div class="form-inline d-flex flex-column justify-content-between col-xs-10 col-md-12 mb-4">
+              <p class="form-label text-capitalize font-weight-bold mb-2">Portrait :</p>
+              <div class="avatar-container d-flex justify-content-around align-items-around flex-wrap">
+                <?php foreach ($avatarList as $index => $avatar) : ?>
+                <div class="avatar d-flex flex-column align-items-center justify-content-center">
+                  <label for="avatar<?= $index; ?>" class="d-flex justify-content-center mb-1"> <?= $avatar['picture']; ?></label>
+                  <input type="radio" class="form-control" name="avatar" value="<?= $avatar['id']; ?>" id="avatar<?= $index; ?>" class="avatar-input" <?=$avatar['isChecked']; ?>>
+                </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
+
+            <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 my-4">
               <label for="firstname" class="form-label text-capitalize font-weight-bold mb-2">prénom :</label>
-              <input type="text" class="form-control col-md-6" name="firstname" id="firstname" value="<?= $connectedUser->getFirstname(); ?>" required="required">
+              <input type="text" class="form-control col-md-6" name="firstname" id="firstname" value="<?= $connectedUser->getFirstname(); ?>"
+                required="required">
             </div>
 
             <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
               <label for="birthday" class="form-label font-weight-bold mb-2">Date de naissance :</label>
-              <input type="date" class="form-control col-md-6" name="birthday" id="birthday" value="<?= $connectedUser->getBirthday(); ?>" required="required">
-            </div>
-
-            <div class="form-inline d-flex justify-content-between text-capitalize col-xs-10 col-md-12 mb-4">
-              <label for="sex" class="form-label font-weight-bold mb-2">sexe :</label>
-              <select class="form-control col-md-6" name="sex" id="sex" required>
-              <?php foreach ($sexList as $sex => $selected) : ?>
-                <option value="<?= $sex; ?>" class="" <?= $selected; ?>><?= $sex; ?></option>
-              <?php endforeach; ?>
-              </select>
+              <input type="date" class="form-control col-md-6" name="birthday" id="birthday" value="<?= $connectedUser->getBirthday(); ?>"
+                required="required">
             </div>
 
             <div class="form-inline d-flex justify-content-between text-capitalize col-xs-10 col-md-12 mb-4">
               <label for="wallpaper" class="form-label font-weight-bold mb-2">thème préféré :</label>
               <select class="form-control col-md-6" name="theme" id="theme" required>
-              <?php foreach ($themeList as $index => $theme) : ?>
-                <option value="<?= $theme['id']; ?>" class="" <?= $theme['isSelect']; ?>><?= $theme['name']; ?></option>
-              <?php endforeach; ?>
+                <?php foreach ($themeList as $index => $theme) : ?>
+                <option value="<?= $theme['id']; ?>" class="" <?=$theme['isSelect']; ?>>
+                  <?= $theme['name']; ?>
+                </option>
+                <?php endforeach; ?>
+                
               </select>
             </div>
           </div>
@@ -66,17 +75,15 @@
           <div class="form-row d-flex col-12 p-0">
             <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
               <label for="mail" class="form-label font-weight-bold mb-2">Adresse mail actuelle :</label>
-              <input type="email" class="form-control col-md-6 " name="mail" id="mail" value="<?= $connectedUser->getMail(); ?>" required="required">
+              <input type="email" class="form-control col-md-6 " name="mail" id="mail" value="<?= $connectedUser->getMail(); ?>"
+                required="required">
             </div>
 
             <div class="d-flex justify-content-center col-xs-10 col-md-12 mb-4">
-              <input id="reset-pswd" class="form-control col-md-5 pl-1" type="button" value="Réinitialiser votre mot de passe" onclick="window.location.href='mailto:me@example.com'"/>
+              <input id="reset-pswd" class="form-control col-md-5 pl-1" type="button" value="Réinitialiser votre mot de passe"
+                onclick="window.location.href='mailto:me@example.com'" />
             </div>
 
-            <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
-              <label for="connectionTime" class="form-label font-weight-bold mb-2">Temps de connexion :</label>
-              <input type="text" id="connectionTime" class="form-control col-md-6" value="<?= $connectedUser->getConnection_time(); ?>" readonly>
-            </div>
           </div>
         </div>
       </div>
@@ -113,7 +120,7 @@
             <p id="score-game-5" class="">score</p>
             <p id="time-game-5" class="">time</p>
           </div>
-          
+
           <div id="game-6" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3">
             <p id="score-game-6" class="">score</p>
             <p id="time-game-6" class="">time</p>

@@ -9,13 +9,12 @@ class UserModel
 {
     private $id;
     private $firstname;
-    private $sex;
     private $birthday;
     private $mail;
     private $password;
-    private $connection_time;
-    private $is_user;
+    private $is_admin;
     private $theme_id;
+    private $avatar_id;
 
     /**
      * findAll.
@@ -107,36 +106,14 @@ class UserModel
         return $pdoStatement->fetchObject(self::class);
     }
 
-    // /**
-    //  * findThemeById.
-    //  *
-    //  * @param int $id
-    //  */
-    // public static function findThemeById($id)
-    // {
-    //     $sql = '
-    //         SELECT theme_id
-    //         FROM user
-    //         WHERE id = :id
-    //     ';
-    //     // On récupère la connextion PDO à la DB
-    //     $pdo = Database::dbConnect();
-    //     // On prépare une requête à l'exécution et retourne un objet
-    //     $pdoStatement = $pdo->prepare($sql);
-    //     $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-    //     $pdoStatement->execute();
-
-    //     return $pdoStatement->fetchObject(self::class);
-    // }
-
     /**
      * add.
      */
     public function add()
     {
         $sql = '
-            INSERT INTO user (firstname, sex, birthday, mail, password, is_user)
-            VALUES (:firstname, :sex, :birthday, :mail, :password, :is_user)
+            INSERT INTO user (firstname, birthday, mail, password, is_admin, avatar_id)
+            VALUES (:firstname, :birthday, :mail, :password, :is_admin, :avatar_id)
         ';
 
         // On récupère la connextion PDO à la DB
@@ -145,11 +122,11 @@ class UserModel
         $pdoStatement = $pdo->prepare($sql);
         // Association des valeurs aux champs de la bdd et paramètrage du retour
         $pdoStatement->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':sex', $this->sex, PDO::PARAM_STR);
         $pdoStatement->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':is_user', $this->is_user, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':is_admin', $this->is_admin, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':avatar_id', $this->avatar_id, PDO::PARAM_INT);
         $pdoStatement->execute();
     }
 
@@ -157,7 +134,6 @@ class UserModel
      * updateInfos.
      *
      * @param mixed $firstname
-     * @param mixed $sex
      * @param mixed $birthday
      * @param mixed $theme
      * @param mixed $mail
@@ -166,7 +142,7 @@ class UserModel
     {
         $sql = '
             UPDATE user
-            SET firstname = :firstname, sex = :sex, birthday = :birthday, mail = :mail, theme_id = :theme_id
+            SET firstname = :firstname, birthday = :birthday, mail = :mail, theme_id = :theme_id, avatar_id = :avatar_id
             WHERE id = :id
         ';
         // On récupère la connextion PDO à la DB
@@ -176,10 +152,10 @@ class UserModel
         // Association des valeurs aux champs de la bdd et paramètrage du retour
         $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':sex', $this->sex, PDO::PARAM_STR);
         $pdoStatement->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $pdoStatement->bindValue(':theme_id', $this->theme_id, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':avatar_id', $this->avatar_id, PDO::PARAM_INT);
         $pdoStatement->execute();
 
         $affectedRows = $pdoStatement->rowCount();
@@ -205,27 +181,6 @@ class UserModel
         $pdoStatement = $pdo->prepare($sql);
         // Association des valeurs aux champs de la bdd et paramètrage du retour
         $pdoStatement->bindValue(':password', $password, PDO::PARAM_STR);
-        $pdoStatement->execute();
-    }
-
-    /**
-     * updateConnectionTime.
-     *
-     * @param mixed $connection_time
-     */
-    public function updateConnectionTime($connection_time)
-    {
-        $sql = '
-            UPDATE user
-            SET connection_time = :connection_time
-            WHERE id = :id
-        ';
-        // On récupère la connextion PDO à la DB
-        $pdo = Database::dbConnect($sql);
-        // On prépare une requête à l'exécution et retourne un objet
-        $pdoStatement = $pdo->prepare($sql);
-        // Association des valeurs aux champs de la bdd et paramètrage du retour
-        $pdoStatement->bindValue(':connection_time', $connection_time, PDO::PARAM_STR);
         $pdoStatement->execute();
     }
 
@@ -265,26 +220,6 @@ class UserModel
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of sex.
-     */
-    public function getSex()
-    {
-        return $this->sex;
-    }
-
-    /**
-     * Set the value of sex.
-     *
-     * @return self
-     */
-    public function setSex($sex)
-    {
-        $this->sex = $sex;
 
         return $this;
     }
@@ -350,42 +285,21 @@ class UserModel
     }
 
     /**
-     * Get the value of connection_time.
+     * Get the value of is_admin.
      */
-    public function getConnection_time()
+    public function getIs_admin()
     {
-        return $this->connection_time;
-        var_dump($this->connection_time);
+        return $this->is_admin;
     }
 
     /**
-     * Set the value of connection_time.
+     * Set the value of is_admin.
      *
      * @return self
      */
-    public function setConnection_time($connection_time)
+    public function setIs_admin($is_admin)
     {
-        $this->connection_time = $connection_time;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of is_user.
-     */
-    public function getIs_user()
-    {
-        return $this->is_user;
-    }
-
-    /**
-     * Set the value of is_user.
-     *
-     * @return self
-     */
-    public function setIs_user($is_user)
-    {
-        $this->is_user = $is_user;
+        $this->is_admin = $is_admin;
 
         return $this;
     }
@@ -406,6 +320,26 @@ class UserModel
     public function setTheme_id($theme_id)
     {
         $this->theme_id = $theme_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of avatar_id.
+     */
+    public function getAvatar_id()
+    {
+        return $this->avatar_id;
+    }
+
+    /**
+     * Set the value of avatar_id.
+     *
+     * @return self
+     */
+    public function setAvatar_id($avatar_id)
+    {
+        $this->avatar_id = $avatar_id;
 
         return $this;
     }
