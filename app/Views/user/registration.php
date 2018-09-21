@@ -2,16 +2,16 @@
 
 <main class="row mt-2 mb-5">
   <section class="form-container container d-flex flex-column align-items-center col-xs-12 col-md-10 col-lg-9 col-xl-7 my-5">
-    <header class="form-header row justify-content-center align-self-center text-capitalize mt-5 mb-3">
-      <h2 class="form-title text-center font-weight-bold">formulaire d' inscription</h2>
+    <header class="section-header row justify-content-center align-self-center text-capitalize mt-5 mb-3">
+      <h2 id="registration-title" class="section-title text-center font-weight-bold">formulaire d' inscription</h2>
     </header>
     
-    <div id="errors" class="alert errors-hide row" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <div id="errors" class="alert errors-hide row text-center px-2" role="alert">
+      <button type="button" class="close pb-1" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <div class="errorsContent"></div>
-    </div>
+      <div class="errorsContent d-flex align-items-center justify-content-center text-center pl-1"></div>
+    </div>   
      
     <form action="" method="post" id="formSignup" class="registration-form row d-flex flex-column justify-content-center align-items-center p-0">
       <div class="container d-flex flex-column justify-content-around align-items-center p-0">

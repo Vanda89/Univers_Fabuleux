@@ -4,8 +4,11 @@ body {
   background-size: cover;
 }
 
-section,
-.game-container {
+#welcome-title {
+  color: #FF6370;
+}
+
+section {
   border: 15px solid #21A08F;
 }
 
@@ -13,12 +16,23 @@ section,
   color: #FF6370;
 }
 
+#news-container-title {
+  text-shadow: 0 0 5px white,
+    0 0 5px white,
+    0 0 5px white;
+}
+
+#news-title {
+  color: #21A08F;
+  text-shadow: 0 0 2px rgb(255, 255, 255);
+}
+
 .form-btn {
-  background-color: #FF6370;
+  background-color: #48CA4E;
 }
 
 .form-btn:hover {
-  background-color: #48CA4E;
+  background-color: #FF6370;
 }
 
 .game .game-timer {
@@ -27,6 +41,10 @@ section,
 
 .end-game-infos .replay {
   background-color: #AFF89E;
+}
+
+.avatar img {
+  border: 3px solid #48CA4E;
 }
 
 footer {

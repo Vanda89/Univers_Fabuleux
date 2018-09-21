@@ -27,32 +27,7 @@ class GameModel
         $pdoStatement = $pdo->query($sql);
 
         // Récupération des résultats sous forme de tableau d'objet
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
-
-        // On retourne les résultats
-        return $results;
-    }
-
-    /**
-     * findPagination.
-     */
-    public static function findAllByPagination($page, $nbPostByPage)
-    {
-        $start = ($page - 1) * $nbPostByPage;
-        $sql = '
-            SELECT *
-            FROM game
-            ORDER BY name DESC
-            LIMIT '.$start.', '.$nbPostByPage.'
-        ';
-        // On récupère la connextion PDO à la DB
-        $pdo = Database::dbConnect();
-
-        // On exécute la requête
-        $pdoStatement = $pdo->query($sql);
-
-        // Récupération des résultats sous forme de tableau d'objet
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
 
         // On retourne les résultats
         return $results;

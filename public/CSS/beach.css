@@ -5,8 +5,11 @@ body {
   background-size: cover;
 }
 
-section,
-.game-container {
+#welcome-title {
+  color: #E6B451;
+}
+
+section {
   border: 15px solid #8A6530;
 }
 
@@ -15,6 +18,17 @@ section,
   text-shadow: 0 0 5px white,
   0 0 5px black,
   0 0 5px white;
+}
+
+#news-container-title {
+  color: #E6B451;
+  text-shadow: 0 0 5px white,
+  0 0 5px white,
+  0 0 5px white;
+}
+
+#news-title {
+  color: #F9DE87;
 }
 
 .form-btn {
@@ -31,6 +45,10 @@ section,
 
 .end-game-infos .replay {
   background-color: #EFBC49;
+}
+
+.avatar img {
+  border: 3px solid #8A6530;
 }
 
 footer {
@@ -50,7 +68,6 @@ footer {
 
 #memory #hard {
   background-color: #1BB8DB;
-
 }
 
 #memory .card-back {

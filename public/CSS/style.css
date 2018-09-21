@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One|Spirax|Chela+One');
-
 /********************************LAYOUT*******************************/
+
 html,
 body {
   width: 100%;
   height: 100%;
-  background: url('../images/wallpaper/bg_flower-and-rainbow.jpg') no-repeat center fixed;
-  background-size: cover;
   overflow-x: hidden;
 }
 
@@ -14,19 +12,18 @@ body {
 
 .full-header {}
 
-.home-title {
+#main-title {
   width: 100%;
   height: 6.5rem;
- 
 }
 
 .title-link {}
 
-.title-mobile {
+#title-mobile {
   padding: 0;
 }
 
-.full-title {
+#full-title {
   display: none;
 }
 
@@ -45,75 +42,130 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 
-
-.home {
-  text-shadow: 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E, 0 0 5px #CF9F3E;
-}
-
-.paint {
+#home-icon {
   text-shadow: 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6, 0 0 5px #8D44D6;
 }
 
-.memory {
+#memory-icon {
   text-shadow: 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8, 0 0 5px #3A9DD8;
 }
 
-.letters {
+#letters-icon {
   text-shadow: 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC, 0 0 5px #80D1EC;
 }
 
-.mystery {
+#mystery-icon {
   text-shadow: 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446, 0 0 5px #8CC446;
 }
 
-.bubbles {
+#bubbles-icon {
   text-shadow: 0 0 5px #F2DB00, 0 0 5px #F2DB00, 0 0 5px #F2DB00, 0 0 5px #F2DB00, 0 0 5px #F2DB00, 0 0 5px #F2DB00, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C, 0 0 5px #F2E92C;
 }
 
-.connection,
-.profile {
+#connection-icon,
+#profile-icon {
   text-shadow: 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C, 0 0 5px #F7983C;
 }
 
-.inscription,
-.disconnection {
+#inscription-icon,
+#disconnection-icon {
   text-shadow: 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24, 0 0 5px #EE3B24;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
 }
 
 .nav-icon {
   width: 3rem;
 }
 
+#welcome-title {
+  font-family: 'Chela One', cursive;
+  font-size: 3rem;
+  font-variant: normal;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
 section {
   font-family: 'Fredoka One', cursive;
   background-color: rgba(255, 255, 255, 0.52);
   border: 15px solid #459A45;
-  border-radius: 2em;
+  border-radius: 32px;
 }
 
-.form-title {
-  font-size: 3.2rem;
-  font-family: 'Chela One',
-    cursive;
-  font-variant: small-caps;
+#carouselGames {
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+#connection-title,
+#profile-title {
   color: #F7983C;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+#registration-title {
+  color: #EE3B24;
+}
+
+.section-title {
+  font-size: 3.2rem;
+  font-family: 'Chela One', cursive;
+  font-variant: small-caps;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.carousel-item img {
+  border-radius: 32px;
+}
+
+.carousel-item .mobile-screenshot {
+  width: 100%;
+  height: 23rem;
+  border-radius: 15px;
+}
+
+.carousel-item .full-screenshot {
+  display: none;
+}
+
+#news-container {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#news-container-title {
+  font-size: 3rem;
+}
+
+#news {
+  border-radius: 32px;
 }
 
 .title-category {
   font-family: 'Chela One', cursive;
   font-variant: small-caps;
-  font-size: 1.8rem;
-  text-shadow: 0 0 5px white,
-    0 0 5px black,
-    0 0 5px white;
+  font-size: 2rem;
+  text-shadow: 0 0 5px white, 0 2px 5px black, 0 0 5px white;
+}
+
+#news-title {
+  font-family: 'Chela One', cursive;
+  font-size: 1.7rem;
+  line-height: 33px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 2px rgb(110, 110, 110);
+}
+
+#news-container .page-link {
+  color: rgba(0, 0, 0, 0.7);
+  background-color: white;
+}
+
+#news-container .page-link:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .form-label,
@@ -122,13 +174,8 @@ section {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62), 0 0 5px rgba(0, 0, 0, 0.62);
 }
 
-.avatar-container {
-
-}
-
 .form-inline .form-control {
   display: inline-block;
-  width: auto;
   vertical-align: middle;
 }
 
@@ -150,6 +197,16 @@ section {
   font-size: 0.9rem;
 }
 
+.form-btn {
+  display: inline-block;
+  width: 12rem;
+  border-color: white;
+}
+
+.form-btn:hover {
+  border-color: white;
+}
+
 .stats-game {
   width: 12rem;
   height: 8rem;
@@ -158,15 +215,19 @@ section {
 
 .errors-hide {
   display: none;
-  width: 40%;
-  text-align: center;
+}
+
+.errorsContent {
+  width: 12rem
 }
 
 .close {
   font-size: 2.2rem;
+  width: 2rem;
 }
 
 /********************************GENERAL GAMES********************/
+
 .game-container {
   height: 45rem;
 }
@@ -183,26 +244,7 @@ section {
   font-family: 'Chela One', cursive;
   font-variant: small-caps;
   font-size: 4.2rem;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(0, 0, 0, 0.3),
-    0 0 5px rgba(0, 0, 0, 0.3),
-    0 0 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .game-header .instructions {
@@ -221,8 +263,7 @@ section {
   padding: 2rem 0;
   font-size: 2rem;
   color: white;
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.3),
-    0 0 12px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 0, 0, 0.3);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   border-color: white;
@@ -262,9 +303,14 @@ section {
   padding-top: 0.4rem;
   font-size: 1.5rem;
   color: #F2DB00;
-  text-shadow: 2px 2px 8px #fbb144,
-    2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 8px #fbb144, 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
+
+.game .game-timer {
+  height: 2.5rem;
+  border-radius: 5px;
+}
+
 
 .game .end-game-infos {
   height: 75%;
@@ -277,17 +323,26 @@ section {
 
 .messageEndGame .bravo {
   font-size: 2.5rem;
-  text-shadow: 2px 2px 8px white,
-    2px 2px 8px white,
-    2px 2px 8px white,
-    2px 2px 8px white,
-    2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 8px white, 2px 2px 8px white, 2px 2px 8px white, 2px 2px 8px white, 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
+.end-game-infos .replay {
+  padding: 1.5rem;
+}
 
 /************************************ STYLE THEME PAR DEFAUT **************************************/
 
-.game-container {
+html,
+body {
+  background: url('../images/wallpaper/bg_flower-and-rainbow.jpg') no-repeat center fixed;
+  background-size: cover;
+}
+
+#welcome-title {
+  color: #459A45;
+}
+
+section {
   border: 15px solid #459A45;
 }
 
@@ -295,24 +350,23 @@ section {
   color: #F2E92C;
 }
 
+#news-title {
+  color: #F7983C;
+}
+
 .form-btn {
   background-color: #BACB3E;
-  border-color: white;
 }
 
 .form-btn:hover {
   background-color: #459A45;
-  border-color: white;
 }
 
 .game .game-timer {
-  height: 2.5rem;
   background-color: #8dc546;
-  border-radius: 5px;
 }
 
 .end-game-infos .replay {
-  padding: 1.5rem;
   background-color: #BACB3E;
 }
 
@@ -325,6 +379,7 @@ footer {
 }
 
 /********** MEMORY **********/
+
 #memory #easy {
   background-color: #80D1EC;
 }
@@ -342,11 +397,8 @@ footer {
   background-size: contain;
 }
 
-#memory .card-back:hover {
-  background-color: gray;
-}
+/************** TYPELETTER **************/
 
-/******** TYPELETTER ********/
 #typeLetter #uppercase {
   background-color: #BACB3E;
 }
@@ -356,25 +408,7 @@ footer {
 }
 
 .playerLetters {
-  text-shadow: 0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648,
-    0 0 12px #8EC648;
+  text-shadow: 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648, 0 0 12px #8EC648;
 }
 
 #playerLetter {
@@ -395,116 +429,100 @@ footer {
 }
 
 /*****************************************  MEDIA-QUERIES *****************************************/
-@media screen and (min-width: 768px) {
 
+@media screen and (min-width: 768px) {
   html,
   body {
     font-size: 18px;
   }
-
-  .title-mobile {
+  #title-mobile {
     display: none;
   }
-
-  .full-title {
+  #full-title {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
-
+  #home-title {
+    font-size: 3.2rem;
+  }
+  .errorsContent {
+    width: 25rem
+  }
+  .close {
+    font-size: 2.2rem;
+    width: 3rem;
+  }
+  .carousel-item .full-screenshot {
+    width: 100%;
+  }
+  #news-content {
+    width: 33rem;
+  }
   .avatar-container {
     width: 22rem;
   }
-
   .avatar {
     margin: 0.8rem 0.5rem 0 0.5rem;
   }
-
   .avatar img {
     position: relative;
     width: 4.5rem;
     height: 6rem;
   }
-
-  .form-title {
-    /* font-size: 2.5rem; */
-  }
-
-  /*******************************GAMES*******************************/
-  .game-header {}
-
-  .game-title {
-    /* margin: 4rem 0; */
-  }
-
+  /**************GAMES****************/
   .game-header .instructions {}
-
   .game .difficulty-container {
     width: 14rem;
   }
-
   .game .btn {
     font-size: 2.5rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
-
   html,
   body {
     font-size: 21px;
   }
-
-  .home-title {
+  #main-title {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
   }
-
-  .full-title {
-    /* width: 25rem; */
-  }
-
   .nav-item:hover {
     -webkit-animation: bounce 0.45s ease infinite alternate;
     animation: bounce 0.45s ease infinite alternate;
   }
-
   @-webkit-keyframes bounce {
     from {
       -webkit-transform: translateY(0);
       transform: translateY(0);
     }
-
     to {
       -webkit-transform: translateY(-20px);
       transform: translateY(-20px);
     }
   }
-
   @keyframes bounce {
     from {
       -webkit-transform: translateY(0);
       transform: translateY(0);
     }
-
     to {
       -webkit-transform: translateY(-20px);
       transform: translateY(-20px);
     }
   }
-
+  /****************GAMES******************/
   .game {
     width: 100%;
   }
-
   .game .difficulty-container {
     width: 90%;
   }
-
   .game .btn {
     width: 13rem;
   }
-
   .game .btn:hover {
     cursor: pointer;
     -webkit-transform: scale(1.1);
@@ -512,45 +530,27 @@ footer {
     -webkit-box-shadow: 1px 1px 20px black;
     box-shadow: 1px 1px 20px black;
   }
-
   .game .game-infos {
     height: 10rem;
   }
-
-  /* .end-game-infos .replay {
-    padding: 1.7rem 0;
-  } */
 }
 
 @media screen and (min-width: 1440px) {
-
   html,
   body {
     font-size: 23px;
   }
-
   .nav-title,
   .hidden-nav-title {
     font-size: 1.2em;
   }
-
   .nav-icon {
     width: 3.5em;
   }
-
   .hidden-nav-icon {
     width: 3em;
   }
-
-  .profile-form {}
-
-  /* 
-  .game .game-board {
-    width: 65%;
-  } */
-
   .game .btn {
     padding: 2.2rem 0rem;
   }
-
 }

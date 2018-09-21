@@ -32,11 +32,7 @@ abstract class CoreController
         $userTheme = null;
         $themeStyle = null;
 
-        // $userTheme = User::isConnected() ? ThemeModel::find($connectedUser->getTheme_id()) : '';
-
-        // $themeStyle = User::isConnected() ? $userTheme->getStyle() : '';
-        // \dump($userTheme->getName());
-
+        // dump($connectedUser);
         if (User::isConnected() === true) {
             $connectedUser = User::getConnectedUser();
             $userTheme = ThemeModel::find($connectedUser->getTheme_id());
