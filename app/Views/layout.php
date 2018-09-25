@@ -6,9 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?=$this->e($title); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Fichier Bootstrap -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
+  <!-- Animate.css -->
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"
+  integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+  crossorigin="anonymous">
   <!-- Fichiers CSS -->
   <link rel="stylesheet" href="<?= $basePath; ?>/css/style.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= (isset($themeStyle)) ? $themeStyle : ''; ?>" rel="stylesheet" type="text/css">
@@ -27,14 +32,14 @@
       
        <?= $this->insert('partials/nav'); ?>
 
-       <?= $this->insert('partials/hidden-nav'); ?>
 
     </header>
+    
 
    <?= $this->section('content'); ?>
 
       <footer class="page-footer row d-flex flex-column py-4 mt-4">
-        <div class="footer-copyright text-light text-center font-weight-bold py-3">&COPY; 2018 Copyright</div>
+        <div class="footer-copyright text-light text-center font-weight-bold py-3">&COPY; 2018 ALCAZAR Sandrine</div>
       </footer>
   </div>
   <!-- Optional JavaScript -->
@@ -47,6 +52,7 @@
     crossorigin="anonymous"></script>
   <!-- Fichier JS -->
   <?= $this->section('js'); ?>
+  
 </body>
 
 </html>

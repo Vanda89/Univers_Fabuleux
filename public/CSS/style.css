@@ -193,8 +193,9 @@ section {
   height: 4rem;
 }
 
-#reset-pswd {
+#changePasswordBtn {
   font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .form-btn {
@@ -207,6 +208,10 @@ section {
   border-color: white;
 }
 
+#avatar-label {
+  font-size: 1.2rem;
+}
+
 .stats-game {
   width: 12rem;
   height: 8rem;
@@ -214,6 +219,10 @@ section {
 }
 
 .errors-hide {
+  display: none;
+}
+
+.errorsPassword-hide {
   display: none;
 }
 
@@ -310,7 +319,6 @@ section {
   height: 2.5rem;
   border-radius: 5px;
 }
-
 
 .game .end-game-infos {
   height: 75%;
@@ -447,7 +455,7 @@ footer {
     font-size: 3.2rem;
   }
   .errorsContent {
-    width: 25rem
+    width: 14rem
   }
   .close {
     font-size: 2.2rem;

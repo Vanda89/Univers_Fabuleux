@@ -2,22 +2,8 @@ var app = {
 
   init: function () {
     console.log('init app');
-    // $('.hidden-header').hide();
 
-    $('body').scroll(function () {
-      var positionNavbar = $('.hidden-tag')[0].getBoundingClientRect();
-      
-      if (positionNavbar.top < window.innerHeight - 750) {
-        // console.log('hidden');   
-        $('#hidden-header').removeClass('hide');
-
-      } else {
-        $('#hidden-header').addClass('hide');
-      }
-
-    });
-
-    // Interception du form de connexion
+    // Soumission de tous les formulaires
     $('#formLogin').on('submit', {
       url: "./loginSubmit"
     }, app.submitForm);
@@ -29,15 +15,23 @@ var app = {
     $('#saveProfile').on('submit', {
       url: "./profile/save"
     }, app.submitForm);
+
+    $('#changePassword').on('submit', {
+      url: "./profile/password"
+    }, app.submitForm);
+
+    $('#addContent').on('submit', {
+      url: "./profile/addContent"
+    }, app.submitFiles);
+
   },
 
+  // Méthode contenant une méthode $.ajax() qui permet de contrôler le traitement des données de type 'json' reçues des formulaires, d'afficher les modals de réussite ou d'erreurs à l'issus du traitement et de rediriger vers la route correspondante.
   submitForm: function (evt) {
-    console.log('init app');
-
     evt.preventDefault();
     var $currentForm = $(this);
     var formData = $currentForm.serialize();
-    
+
     $.ajax({
       url: evt.data.url,
       method: 'POST',
@@ -46,87 +40,120 @@ var app = {
     }).done(function (response) {
       console.log(response);
 
-      var $errorsDiv = $('#errors') ;
+      var $errorsDiv = $('.errors');
       var $content = $errorsDiv.find('.errorsContent');
-
 
       // Inscription 
       if (response.code == 1 && response.type === 'signup') {
-         // Ajout de  la classe danger
-
         $errorsDiv.removeClass('alert-danger').addClass('alert-success');
-       // Affichage du message de succès
         $content.html('Inscription réussie');
-       // Affichage de la div
         $errorsDiv.show();
 
         var urlToRedirect = response.redirect;
-
-         // Redirection après 2 secondes
         window.setTimeout(function () {
           location.href = urlToRedirect;
-        }, 2000);
-      } 
+        }, 2500);
+      }
 
       // Connexion
-      else if (response.code == 1 && response.type  === 'login') {
-        // Ajout de  la classe danger
-        $errorsDiv.removeClass('alert-danger').addClass('alert-success');
-        // Affichage du message de succès
+      else if (response.code == 1 && response.type === 'login') {
+        $errorsDiv.removeClass('alert-danger').addClass('alert-success d-flex justify-content-between');
         $content.html('Connexion réussie');
-        // Affichage de la div
         $errorsDiv.show();
 
         var urlToRedirect = response.redirect;
-
-        // Redirection après 2 secondes
         window.setTimeout(function () {
           location.href = urlToRedirect;
-        }, 2000);
+        }, 2500);
       }
 
       // Enregistrement des données de la page de profil
-      else if (response.code == 1 && response.type  === 'saveProfile') {
-        // Ajout de  la classe danger
+      else if (response.code == 1 && response.type === 'saveProfile') {
         $errorsDiv.removeClass('alert-danger').addClass('alert-success');
-        // Affichage du message de succès
         $content.html('Vos données ont bien été mises à jour');
-        // Affichage de la div
         $errorsDiv.show();
 
         var urlToRedirect = response.redirect;
-
-        // Redirection après 2 secondes
         window.setTimeout(function () {
           location.href = urlToRedirect;
-        }, 2000);
+        }, 2500);
       }
-      
+
+      // Change le mot de passe
+      else if (response.code == 1 && response.type === 'changePassword') {
+        $errorsDiv.removeClass('alert-danger').addClass('alert-success');
+        $content.html('Votre mot de passe a bien été modifié');
+        $errorsDiv.show();
+
+        var urlToRedirect = response.redirect;
+        window.setTimeout(function () {
+          location.href = urlToRedirect;
+        }, 2500);
+      }
 
       // Sinon, il y a des erreurs à afficher
       else {
-        console.log('non');
-
-        // J'ajoute la classe danger
         $errorsDiv.addClass('alert-danger');
-        // Je vide le contenu (anciennes erreurs)
+        // Effaçage des anciennes
         $content.html("");
-        // Je parcours les erreurs retournées par l'appel Ajax
+        console.log(response);
+
+        // Parcours des erreurs retournées par l'appel Ajax et création de la div pour y mettre le contenu qui sera insérer dans le DOM
         $.each(response.errorList, function (index, value) {
-          // Je crée un élément "div" avec du code html à l'intérieur
-          var $currenterrorDiv = $('<div>', {
-            html: value
-          });
-          // J'ajoute cet élément au DOM
+          var $currenterrorDiv = $('<div>').html = value + '<br>';
           $content.append($currenterrorDiv);
         });
-        // J'affiche la div
+        $errorsDiv.show();
+        console.log($content);
+      }
+    });
+  },
+
+  // Méthode contenant une méthode $.ajax() qui permet de contrôler le traitement des données de type 'files' reçues du formulaire d'ajout de contenu, d'afficher les modals de réussite ou d'erreurs à l'issus du traitement et de rediriger vers la route correspondante.
+  submitFiles: function (evt) {
+    evt.preventDefault();
+    var formData = new FormData(this);
+
+    console.log(evt);
+
+    $.ajax({
+      url: evt.data.url,
+      type: 'POST',
+      enctype: "multipart/form-data",
+      data: formData,
+      contentType: false,
+      cache: false,
+      processData: false,
+    }).done(function (response) {
+      console.log(response);
+
+      var $errorsDiv = $('#errors');
+      var $content = $errorsDiv.find('.errorsContent');
+
+      if (response.code == 1 && response.type === 'addContent') {
+        $errorsDiv.removeClass('alert-danger').addClass('alert-success');
+        $content.html('Le fichier a bien été envoyé');
+        $errorsDiv.show();
+
+        var urlToRedirect = response.redirect;
+        window.setTimeout(function () {
+          location.href = urlToRedirect;
+        }, 2500);
+      }
+
+      else {
+        $errorsDiv.addClass('alert-danger');
+        $content.html("");
+        console.log(response);
+
+         // Parcours des erreurs retournées par l'appel Ajax et création de la div pour y mettre le contenu qui sera insérer dans le DOM
+        $.each(response.errorList, function (index, value) {
+          var $currenterrorDiv = $('<div>').html = value + '<br>';
+          $content.append($currenterrorDiv);
+        });
+        console.log($content);
         $errorsDiv.show();
       }
-      
-    }).fail(function () {
-      $('#alertBox').modal('show');
-      $('#alertBox-text').text('Une erreur est survenue !');
     });
   },
 };

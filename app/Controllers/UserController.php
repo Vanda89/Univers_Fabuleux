@@ -9,10 +9,14 @@ use P5universFabuleux\Utils\User;
 
 class UserController extends CoreController
 {
+    /**
+     * signup : méthode gérant l'affichage du formulaire d'inscription avec affichage des avatars.
+     */
     public function signup()
     {
         $avatars = AvatarModel::findAll();
         $avatarList = [];
+
         foreach ($avatars as $key => $avatar) {
             $item = [
                 'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
@@ -28,15 +32,14 @@ class UserController extends CoreController
         $this->show('user/registration', $dataToViews);
     }
 
+    /**
+     * signupSubmit : méthode traitant les données envoyées depuis le formulaire d'inscription et, après recherche d'éventuelles erreurs, permettant de les envoyer en bdd, sinon affichage de celles-ci pour l'utilisateur.
+     */
     public function signupSubmit()
     {
-        // Tableau contenant toutes les erreurs
         $errorList = [];
 
-        // formulaire soumis
         if (!empty($_POST)) {
-            //dump($_POST);exit;
-            // Je récupère les données
             $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
             $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
             $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
@@ -44,14 +47,12 @@ class UserController extends CoreController
             $password = isset($_POST['password']) ? $_POST['password'] : '';
             $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
 
-            // Je traite les données si besoin
             $firstname = trim($firstname);
             $birthday = trim($birthday);
             $mail = trim($mail);
             $password = trim($password);
             $passwordConfirm = trim($passwordConfirm);
 
-            // Je valide les données => je cherche les erreurs
             if (empty($avatar) || empty($firstname) || empty($birthday) || empty($mail) || empty($password) || empty($passwordConfirm)) {
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
@@ -73,14 +74,12 @@ class UserController extends CoreController
             }
 
             if ($password != $passwordConfirm) {
-                $errorList[] = 'Les 2 mots de passe sont doivent être identiques';
+                $errorList[] = 'Les 2 mots de passe doivent être identiques';
             }
 
-            // Si tout est ok (aucune erreur)
             if (empty($errorList)) {
-                // Je hash/encode le mot de passe
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                // On insert en DB
+
                 $newUserModel = new UserModel();
                 $newUserModel->setFirstname($firstname);
                 $newUserModel->setBirthday($birthday);
@@ -91,10 +90,9 @@ class UserController extends CoreController
                 $newUserModel->setAvatar_id($avatar);
                 $newUserModel->add();
 
-                // Sauvegarde en Session de l'user
                 User::connect($newUserModel);
-                // dump($newUserModel);
-                // On envoie un JSON avec l'url du home pour la redirection
+
+                // JSON avec l'url du home pour la redirection
                 $this->sendJson([
                      'code' => 1,
                         'redirect' => $this->router->generate('main_home'),
@@ -103,7 +101,7 @@ class UserController extends CoreController
                 ]);
             }
 
-            // Envoi du JSON avec la liste des erreurs
+            // JSON avec la liste des erreurs
             $this->sendJson([
             'code' => 2,
             'errorList' => $errorList,
@@ -112,30 +110,28 @@ class UserController extends CoreController
         }
     }
 
+    /**
+     * login.
+     */
     public function login()
     {
-        // Exécute la view
         $this->show('user/connection');
     }
 
+    /**
+     * loginSubmit : méthode traitant les données envoyées depuis le formulaire de connexion et permettant, après recherche d'éventuelles erreurs, de se connecter, sinon affichage de celles-ci pour l'utilisateur.
+     */
     public function loginSubmit()
     {
-        // Tableau contenant toutes les erreurs
         $errorList = [];
 
-        // formulaire soumis
         if (!empty($_POST)) {
-            //dump($_POST);exit;
-
-            // Je récupère les données
             $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
             $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-            // Je traite les données si besoin
             $mail = trim($mail);
             $password = trim($password);
 
-            // Je valide les données => je cherche les erreurs
             if (filter_var($mail, FILTER_VALIDATE_EMAIL) === false || strlen($password) < 8) {
                 $errorList[] = 'Identifiant ou mot de passe incorrect.';
             }
@@ -144,20 +140,15 @@ class UserController extends CoreController
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
 
-            // Si tout est ok (aucune erreur)
+            // S'il n'y a pas d'erreur avant, on compare les données avec la bdd
             if (empty($errorList)) {
-                // On va cherche le user pour l'email fourni
                 $userModel = UserModel::findByMail($mail);
-                // dump($userModel);exit;
 
-                // Si l'email existe
                 if ($userModel !== false) {
-                    // Alors, on va tester le password
                     if (password_verify($password, $userModel->getPassword())) {
-                        // Je connecte l'utilisateur, peut importe comme cela est fait
                         User::connect($userModel);
 
-                        // On envoie un JSON avec l'url du home pour la redirection
+                        // JSON avec l'url du home pour la redirection
                         $this->sendJson([
                         'code' => 1,
                         'redirect' => $this->router->generate('main_home'),
@@ -172,7 +163,7 @@ class UserController extends CoreController
                 }
             }
 
-            // Envoi du JSON avec la liste des erreurs
+            // JSON avec la liste des erreurs
             $this->sendJson([
             'code' => 2,
             'errorList' => $errorList,
@@ -181,15 +172,19 @@ class UserController extends CoreController
         }
     }
 
+    /**
+     * logout : déconnexion et redirection sur la page d'accueil.
+     */
     public function logout()
     {
-        // Je déconnecte le user
         User::disconnect();
 
-        // Je redirige vers la home
         $this->redirectToRoute('main_home');
     }
 
+    /**
+     * profile : méthode affichant la page de profil de l'utilisateur avec ses préférences (thème, avatar) et ses informations personnelles.
+     */
     public function profile()
     {
         $user = User::isConnected() ? User::getConnectedUser() : false;
@@ -213,6 +208,7 @@ class UserController extends CoreController
         $avatarList = [];
         foreach ($avatars as $key => $avatar) {
             $item = [
+                // Insertion des image avec l'encodage en MIME
                 'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
                 // Rajoute un attribut HTML pour l'autosélection
                 'isChecked' => (intval($user->getAvatar_id()) === $key + 1) ? 'checked' : '',
@@ -226,7 +222,7 @@ class UserController extends CoreController
             'avatarList' => $avatarList,
         ];
 
-        // Exécute la view
+        // Affiche la page de profil correspondant au rôle de l'utilisateur
         if ($isAdmin === true) {
             $this->show('user/profileAdmin', $dataToViews);
         } elseif ($user != null) {
@@ -234,29 +230,26 @@ class UserController extends CoreController
         }
     }
 
+    /**
+     * saveProfile : méthode retrétant les données de la page de profil afin de modifier en bdd ce qui est différent.
+     */
     public function saveProfile()
     {
-        // Tableau contenant toutes les erreurs
         $errorList = [];
 
-        // formulaire soumis
-        if (!empty($_POST)) {
-            // dump($_POST);
-            // exit;
+        $user = User::isConnected() ? User::getConnectedUser() : false;
 
-            // Je récupère les données
+        if (!empty($_POST)) {
             $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
             $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
             $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
             $theme_id = isset($_POST['theme']) ? $_POST['theme'] : '';
             $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
 
-            // Je traite les données si besoin
             $firstname = trim($firstname);
             $birthday = trim($birthday);
             $mail = trim($mail);
 
-            // Je valide les données => je cherche les erreur
             if (empty($avatar) || empty($firstname) || empty($birthday) || empty($theme_id) || empty($mail)) {
                 $errorList[] = 'Tous les champs sont obligatoires.';
             }
@@ -267,9 +260,6 @@ class UserController extends CoreController
 
             // Si tout est ok (aucune erreur)
             if ((empty($errorList)) && (isset($_POST['id']))) {
-                // On insert en DB
-                // dump('ok');
-
                 $currentUserModel = UserModel::find($_POST['id']);
                 $currentUserModel->setFirstname($firstname);
                 $currentUserModel->setBirthday($birthday);
@@ -279,7 +269,7 @@ class UserController extends CoreController
                 $currentUserModel->updateInfos();
                 User::connect($currentUserModel);
 
-                // On envoie un JSON avec l'url du home pour la redirection
+                // JSON avec l'url du home pour la redirection
                 $this->sendJson([
                      'code' => 1,
                         'redirect' => $this->router->generate('user_profile'),
@@ -288,11 +278,118 @@ class UserController extends CoreController
                 ]);
             }
 
-            // Envoi du JSON avec la liste des erreurs
+            // JSON avec la liste des erreurs
             $this->sendJson([
             'code' => 2,
             'errorList' => $errorList,
             'type' => 'saveProfile',
+            ]);
+        }
+    }
+
+    /**
+     * changePassword : méthode gérant uniquement le formulaire de modification de mot de passe tout en faisant les vérifications nécessaires et encodant le mot de passe.
+     */
+    public function changePassword()
+    {
+        $errorList = [];
+
+        $user = User::isConnected() ? User::getConnectedUser() : false;
+
+        $hash = $user->getPassword();
+
+        if (!empty($_POST)) {
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
+            $newPassword = isset($_POST['newPassword']) ? $_POST['newPassword'] : '';
+            $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
+
+            $password = trim($password);
+            $newPassword = trim($newPassword);
+            $passwordConfirm = trim($passwordConfirm);
+
+            if (empty($password) || empty($newPassword) || empty($passwordConfirm)) {
+                $errorList[] = 'Tous les champs sont obligatoires.';
+            }
+
+            if (password_verify($password, $hash) === false) {
+                $errorList[] = 'Mot de passe actuel erroné';
+            }
+
+            if (strlen($newPassword) < 8) {
+                $errorList[] = 'Le mot de passe doit faire au moins 8 caractères';
+            }
+
+            if ($newPassword != $passwordConfirm) {
+                $errorList[] = 'Les 2 mots de passe doivent être identiques';
+            }
+
+            if ((empty($errorList)) && (isset($_POST['id']))) {
+                $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+                $currentUserModel = UserModel::find($_POST['id']);
+                $currentUserModel->setPassword($hashedPassword);
+                $currentUserModel->updateInfos();
+                User::connect($currentUserModel);
+
+                // JSON avec l'url du home pour la redirection
+                $this->sendJson([
+                     'code' => 1,
+                        'redirect' => $this->router->generate('user_profile'),
+                        'errorList' => $errorList,
+                        'type' => 'changePassword',
+                ]);
+            }
+
+            // JSON avec la liste des erreurs
+            $this->sendJson([
+            'code' => 2,
+            'errorList' => $errorList,
+            'type' => 'changePassword',
+            ]);
+        }
+    }
+
+    /**
+     * addContent : méthode pour l'ajout de contenu sur la page de profilAdmin, même principe que les autres.
+     */
+    public function addContent()
+    {
+        $errorList = [];
+
+        if (!empty($_FILES)) {
+            $newAvatar = isset($_FILES['newAvatar']) ? $_FILES['newAvatar'] : '';
+
+            if (empty($newAvatar)) {
+                $errorList[] = 'Fichier manquant';
+            }
+
+            if ($newAvatar['type'] != 'image/jpg' && $newAvatar['type'] != 'image/jpeg') {
+                $errorList[] = 'Seulement les fichiers .jpg, .jpeg et .png sont autorisés.';
+            }
+
+            if ($newAvatar['size'] > 1048576) {
+                $errorList[] = 'Fichier trop volumineux';
+            }
+
+            if (empty($errorList)) {
+                $currentAvatarModel = new AvatarModel();
+                $currentAvatarModel->setAvatar_picture(fopen(($newAvatar['tmp_name']), 'r'));
+                $currentAvatarModel->addAvatar();
+
+                // JSON avec l'url du home pour la redirection
+                $this->sendJson([
+                     'code' => 1,
+                        'redirect' => $this->router->generate('user_profile'),
+                        'errorList' => $errorList,
+                        'type' => 'addContent',
+                ]);
+            }
+
+            // JSON avec la liste des erreurs
+            $this->sendJson([
+            'code' => 2,
+            'errorList' => $errorList,
+            'type' => 'addContent',
             ]);
         }
     }

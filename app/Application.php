@@ -36,19 +36,28 @@ class Application
         $this->router->map('GET', '/cgu', 'MainController#cgu', 'main_cgu');
         // 1 jeu
         $this->router->map('GET', '/game', 'MainController#showGame', 'game_game');
+
+        $this->router->map('POST', '/setScore', 'MainController#setScore', 'main_setScore');
         // Mentions légales
         $this->router->map('GET', '/legal-notice', 'MainController#legalNotice', 'main_legalnotice');
         // Inscription
-        $this->router->map('GET', '/signup', 'UserController#signup', 'user_signup'); // Lien vers la page
-        $this->router->map('POST', '/signupSubmit', 'UserController#signupSubmit', 'user_signupSubmit'); // Formulaire
+        $this->router->map('GET', '/signup', 'UserController#signup', 'user_signup');
+        // Lien vers la page
+        $this->router->map('POST', '/signupSubmit', 'UserController#signupSubmit', 'user_signupSubmit');
         // Connexion
-        $this->router->map('GET', '/login', 'UserController#login', 'user_login'); // Lien vers la page
-        $this->router->map('POST', '/loginSubmit', 'UserController#loginSubmit', 'user_loginSubmit'); // Formulaire
+        $this->router->map('GET', '/login', 'UserController#login', 'user_login');
+        // Lien vers la page
+        $this->router->map('POST', '/loginSubmit', 'UserController#loginSubmit', 'user_loginSubmit');
         // Déconnexion
         $this->router->map('GET', '/logout', 'UserController#logout', 'user_logout');
         // Espace personnel
-        $this->router->map('GET', '/profile', 'UserController#profile', 'user_profile'); // Lien vers la page
-        $this->router->map('POST', '/profile/save', 'UserController#saveProfile', 'user_saveProfile'); // Enregistrement des nouvelles données
+        $this->router->map('GET', '/profile', 'UserController#profile', 'user_profile');
+        // Enregistrement des nouvelles données
+        $this->router->map('POST', '/profile/save', 'UserController#saveProfile', 'user_saveProfile');
+        // Changement de mot de passe
+        $this->router->map('POST', '/profile/password', 'UserController#changePassword', 'user_changePassword');
+        // Ajout de contenu dans la page de profilAdmin
+        $this->router->map('POST', '/profile/addContent', 'UserController#addContent', 'user_addContent');
     }
 
     // créer la méthode run qui doit afficher un message qui permet de vérifier qu'elle est bien exécutée
@@ -84,7 +93,6 @@ class Application
         }
     }
 
-    // GETTERS
     // Spécification du type de données retournées : Altorouter
     public function getRouter(): AltoRouter
     {

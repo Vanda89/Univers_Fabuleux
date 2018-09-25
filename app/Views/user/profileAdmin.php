@@ -6,18 +6,18 @@
       <h2 id="profile-title" class="section-title text-center text-capitalize font-weight-bold">espace personnel</h2>
     </header>
 
-    <div id="errors" class="alert errors-hide row text-center px-2" role="alert">
-      <button type="button" class="close pb-1" data-dismiss="alert" aria-label="Close">
+    <div class="errors errors-hide alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="errorsContent d-flex align-items-center justify-content-center text-center pl-1"></div>
     </div>
 
-    <form action="" method="post" id="saveProfile" class="form row d-flex flex-column align-items-center justify-content-around mb-5">
+    <form action="" method="post" id="saveProfile" class="form row d-flex justify-content-center align-items-center">
       <input type="hidden" name="id" value="<?= $connectedUser->getId(); ?>">
 
       <div class="form-group container d-flex flex-column align-items-center justify-content-center mb-5">
-        <h3 class="title-category row my-5">Profil de l'enfant</h3>
+        <h3 class="title-category row my-5">Front-end</h3>
 
         <div class="form-row row d-flex justify-content-center col-12 p-0 ">
           <div class="form-inline d-flex flex-column justify-content-between col-xs-10 col-md-12 mb-4 pl-0">
@@ -34,9 +34,9 @@
             </div>
           </div>
 
-          <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 my-4">
+          <div class="form-inline d-flex justify-content-between  col-xs-10 col-md-12 my-4">
             <label for="firstname" class="form-label text-capitalize font-weight-bold mb-2">prénom :</label>
-            <input type="text" class="form-control text-capitalize col-md-6" name="firstname" id="firstname" value="<?= $connectedUser->getFirstname(); ?>"
+            <input type="text" class="form-control col-xs-12 col-md-6" name="firstname" id="firstname" value="<?= $connectedUser->getFirstname(); ?>"
               required="required">
           </div>
 
@@ -54,16 +54,9 @@
                 <?= $theme['name']; ?>
               </option>
               <?php endforeach; ?>
-
             </select>
           </div>
-        </div>
-      </div>
 
-      <div class="form-group container d-flex flex-column align-items-center justify-content-center mb-5 ">
-        <h3 class="title-category row text-center my-5">Informations de compte</h3>
-
-        <div class="form-row d-flex justify-content-center col-12 p-0 ">
           <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
             <label for="mail" class="form-label font-weight-bold mb-2">Adresse mail actuelle :</label>
             <input type="email" class="form-control col-md-6 " name="mail" id="mail" value="<?= $connectedUser->getMail(); ?>"
@@ -93,7 +86,7 @@
               </button>
             </div>
 
-            <div class="errors errors-hide alert alert-danger " role="alert">
+            <div class="errors errors-hide alert alert-danger" role="alert">
               <button type="button" class="close " data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -130,44 +123,20 @@
       </div>
     </div>
 
-    <div class="row align-self-center text-capitalize d-flex justify-content-center mb-5">
-      <h3 class="title-category  my-5">statistiques</h3>
-      <div class="container d-flex flex-column justify-content-center align-items-center align-items-lg-stretch col-lg-12">
-        <div class="games-row row d-flex flex-column flex-md-row justify-content-around align-items-around ">
-          <div id="game-1" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-1" class="">score</p>
-            <p id="time-game-1" class="">time</p>
-          </div>
-
-          <div id="game-2" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-2" class="">score</p>
-            <p id="time-game-2" class="">time</p>
-          </div>
-
-          <div id="game-3" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3">
-            <p id="score-game-3" class="">score</p>
-            <p id="time-game-3" class="">time</p>
-          </div>
+    <div id="upload" class="row d-flex flex-row align-items-center justify-content-center ">
+      <h3 class="title-category text-center col-12 my-5">Back-end</h3>
+      <form method="post" action="" id="addContent" class="d-flex flex-column align-items-center justify-content-between col-xs-10 col-md-12 mb-4"
+        enctype="multipart/form-data">
+        <div class="form-inline d-flex justify-content-center  col-xs-10 col-md-12 mb-4">
+          <label for="newAvatar" id="avatar-label" class="form-label font-weight-bold mb-2 text-center">Avatars :</label><br />
+          <input type="file" name="newAvatar" id="newAvatar" class="d-flex justify-content-center text-center ml-5 mb-2"
+            accept=".jpg, .jpeg" /><br />
         </div>
-
-        <div class="games-row row d-flex flex-column flex-md-row justify-content-around align-items-around">
-          <div id="game-4" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-4" class="">score</p>
-            <p id="time-game-4" class="">time</p>
-          </div>
-
-          <div id="game-5" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-5" class="">score</p>
-            <p id="time-game-5" class="">time</p>
-          </div>
-
-          <div id="game-6" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3">
-            <p id="score-game-6" class="">score</p>
-            <p id="time-game-6" class="">time</p>
-          </div>
-        </div>
-      </div>
+        <button type="submit" id="avatar-btn" class="form-btn row btn text-light" name="avatar-btn">Envoyer
+          avatar(s)</button>
+      </form>
     </div>
+
   </section>
 </main>
 

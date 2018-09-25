@@ -26,7 +26,7 @@ class AvatarModel
         $pdoStatement = $pdo->query($sql);
 
         // Récupération des résultats sous forme de tableau d'objet UserModel
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
 
         // On retourne les résultats
         return $results;
@@ -54,6 +54,25 @@ class AvatarModel
 
         // Récupération du résultat sous forme d'objet FQCN
         return $pdoStatement->fetchObject(self::class);
+    }
+
+    /**
+     * addAvatar.
+     */
+    public function addAvatar()
+    {
+        $sql = '
+            INSERT INTO avatar (avatar_picture)
+            VALUES (:avatar_picture)
+        ';
+
+        // On récupère la connextion PDO à la DB
+        $pdo = Database::dbConnect();
+        // On prépare une requête à l'exécution et retourne un objet
+        $pdoStatement = $pdo->prepare($sql);
+        // Association des valeurs aux champs de la bdd et paramètrage du retour
+        $pdoStatement->bindValue(':avatar_picture', $this->avatar_picture, PDO::PARAM_LOB);
+        $pdoStatement->execute();
     }
 
     /**
