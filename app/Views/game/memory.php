@@ -1,5 +1,5 @@
 <?php $this->layout('layout', ['title' => 'Memory',
-                                'gameStyle' => 'memory', ]); ?>
+                                'gameStyle' => 'memory.css', ]); ?>
 
 <main class="row mb-5">
   <section id="memory-container" class="game-container container d-flex flex-column justify-content-start align-items-center">

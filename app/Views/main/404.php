@@ -8,7 +8,7 @@
 
     <div id="404" class="row d-flex flex-column justify-content-around align-items-center mt-5 mb-5 py-5">
      <h3 class="mb-4">Vous êtes allés un peu trop loin...</h3>
-     <img src="../public/images/vector_errors/404.png" alt="vecteur d'une île déserte avec un soleil">
+     <img src="<?= $basePath; ?>/images/vector_errors/404.png" alt="vecteur d'une île déserte avec un soleil">
      <div class="d-flex flex-column justify-content-around mt-4">
         <h3 class="mb-4">...faites demi-tour en cliquant ici</h3>
         <a href="<?= $router->generate('main_home'); ?>" class="home-error btn btn-dark animated pulse infinite m-auto">Accueil</a>

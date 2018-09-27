@@ -9,13 +9,13 @@
   <section id="carouselGames" class="carousel slide container mb-5" data-ride="carousel">
     <div class="carousel-inner d-flex justify-content-center mb-5">
       <div class="carousel-item row active ">
-        <img src="../public/images/slides/Screenshot_Memory_mobile.jpg" class="mobile-screenshot " alt="Screenshot du jeu Memory pour petite résolution">
-        <img src="../public/images/slides/Screenshot_Memory.jpg" class="full-screenshot " alt="Screenshot du jeu Memory pour grande résolution">
+        <img src="<?= $basePath; ?>/images/slides/Screenshot_Memory_mobile.jpg" class="mobile-screenshot " alt="Screenshot du jeu Memory pour petite résolution">
+        <img src="<?= $basePath; ?>/images/slides/Screenshot_Memory.jpg" class="full-screenshot " alt="Screenshot du jeu Memory pour grande résolution">
       </div>
 
       <div class="carousel-item row">
-        <img src="../public/images/slides/Screenshot_Tape-lettre_mobile.jpg" class="mobile-screenshot " alt="Screenshot du jeu Tape-lettre pour petite résolution">
-        <img src="../public/images/slides/Screenshot_Tape-lettre.jpg" class="full-screenshot " alt="Screenshot du jeu Tape-lettre pour grande résolution">
+        <img src="<?= $basePath; ?>/images/slides/Screenshot_Tape-lettre_mobile.jpg" class="mobile-screenshot " alt="Screenshot du jeu Tape-lettre pour petite résolution">
+        <img src="<?= $basePath; ?>/images/slides/Screenshot_Tape-lettre.jpg" class="full-screenshot " alt="Screenshot du jeu Tape-lettre pour grande résolution">
       </div>
     </div>
   </section>
