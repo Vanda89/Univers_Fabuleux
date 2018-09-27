@@ -191,6 +191,11 @@ class UserController extends CoreController
         $user = User::isConnected() ? User::getConnectedUser() : false;
         $isAdmin = User::isAdmin();
 
+        // Si aucun utilisateur n'est pas connecté, protège la page profil avec une 403
+        if ($isAdmin === false || $user === null) {
+            $this->show('main/403');
+        }
+
         $userTheme = ThemeModel::find($user->getTheme_Id());
         $themes = ThemeModel::findAllName();
         $themeList = [];
@@ -240,15 +245,12 @@ class UserController extends CoreController
             'gameList' => $gameList,
         ];
 
-        dump($gameList);
-
+        dump($isAdmin);
         // Affiche la page de profil correspondant au rôle de l'utilisateur
         if ($isAdmin === true) {
             $this->show('user/profileAdmin', $dataToViews);
         } elseif ($user != null) {
             $this->show('user/profile', $dataToViews);
-        } else {
-            $this->show('main/403');
         }
     }
 

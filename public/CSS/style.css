@@ -117,6 +117,10 @@ section {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
+#carouselGames {
+  padding: 0;
+}
+
 .carousel-item img {
   border-radius: 32px;
 }
@@ -212,30 +216,22 @@ section {
   font-size: 1.2rem;
 }
 
-#stats-container {
-  
-
-}
-
 #gameName {
   font-size: 1.5rem;
   font-variant: small-caps;
   text-shadow: 0 0 5px black,
-  0 2px 5px white,
-  0 0 5px white;
-}
-
-#stats {
+    0 2px 5px white,
+    0 0 5px white;
 }
 
 .gameStats {
   color: #BACB3E;
- font-size: 1.35rem;
+  font-size: 1.35rem;
   font-family: 'Chela One',
-  cursive;
+    cursive;
   text-shadow: 0 0 5px black,
-  0 2px 5px white,
-  0 0 5px white;
+    0 2px 5px white,
+    0 0 5px white;
 }
 
 .score {
@@ -244,9 +240,9 @@ section {
 
 .starProfile {
   font-size: 0.9rem;
-   color: #F2DB00;
-   text-shadow: 2px 2px 8px #fbb144,
-   2px 2px 8px rgba(0, 0, 0, 0.7);
+  color: #F2DB00;
+  text-shadow: 2px 2px 8px #fbb144,
+    2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .time {
@@ -484,100 +480,139 @@ footer {
 }
 
 /*****************************************  MEDIA-QUERIES *****************************************/
+@media screen and (min-width: 425px) {
+
+  .carousel-item .mobile-screenshot {
+    display: none;
+  }
+
+  .carousel-item .full-screenshot {
+    display: block;
+    width: 100%;
+   
+    border-radius: 15px;
+  }
+}
 
 @media screen and (min-width: 768px) {
+
   html,
   body {
     font-size: 18px;
   }
+
   #title-mobile {
     display: none;
   }
+
   #full-title {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
+
   #home-title {
     font-size: 3.2rem;
   }
+
   .errorsContent {
     width: 14rem
   }
+
   .close {
     font-size: 2.2rem;
     width: 3rem;
   }
+
   .carousel-item .full-screenshot {
     width: 100%;
+    height: 23rem;
   }
+
   #news-content {
     width: 33rem;
   }
+
   .avatar-container {
     width: 22rem;
   }
+
   .avatar {
     margin: 0.8rem 0.5rem 0 0.5rem;
   }
+
   .avatar img {
     position: relative;
     width: 4.5rem;
     height: 6rem;
   }
+
   /**************GAMES****************/
   .game-header .instructions {}
+
   .game .difficulty-container {
     width: 14rem;
   }
+
   .game .btn {
     font-size: 2.5rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
+
   html,
   body {
     font-size: 21px;
   }
+
   #main-title {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
   }
+
   .nav-item:hover {
     -webkit-animation: bounce 0.45s ease infinite alternate;
     animation: bounce 0.45s ease infinite alternate;
   }
+
   @-webkit-keyframes bounce {
     from {
       -webkit-transform: translateY(0);
       transform: translateY(0);
     }
+
     to {
       -webkit-transform: translateY(-20px);
       transform: translateY(-20px);
     }
   }
+
   @keyframes bounce {
     from {
       -webkit-transform: translateY(0);
       transform: translateY(0);
     }
+
     to {
       -webkit-transform: translateY(-20px);
       transform: translateY(-20px);
     }
   }
+
   /****************GAMES******************/
   .game {
     width: 100%;
   }
+
   .game .difficulty-container {
     width: 90%;
   }
+
   .game .btn {
     width: 13rem;
   }
+
   .game .btn:hover {
     cursor: pointer;
     -webkit-transform: scale(1.1);
@@ -585,26 +620,32 @@ footer {
     -webkit-box-shadow: 1px 1px 20px black;
     box-shadow: 1px 1px 20px black;
   }
+
   .game .game-infos {
     height: 10rem;
   }
 }
 
 @media screen and (min-width: 1440px) {
+
   html,
   body {
     font-size: 23px;
   }
+
   .nav-title,
   .hidden-nav-title {
     font-size: 1.2em;
   }
+
   .nav-icon {
     width: 3.5em;
   }
+
   .hidden-nav-icon {
     width: 3em;
   }
+
   .game .btn {
     padding: 2.2rem 0rem;
   }

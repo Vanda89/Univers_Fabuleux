@@ -1,107 +1,81 @@
 var data = {
   alphabetLetters: [{
-      'letter': 'a',
-      'sound': '',
+      'letter': 'a'
     },
     {
-      'letter': 'b',
-      'sound': '',
+      'letter': 'b'
     },
     {
-      'letter': 'c',
-      'sound': '',
+      'letter': 'c'
     },
     {
-      'letter': 'd',
-      'sound': '',
+      'letter': 'd'
     },
     {
-      'letter': 'e',
-      'sound': '',
+      'letter': 'e'
     },
     {
-      'letter': 'f',
-      'sound': '',
+      'letter': 'f'
     },
     {
-      'letter': 'g',
-      'sound': '',
+      'letter': 'g'
     },
     {
-      'letter': 'h',
-      'sound': '',
+      'letter': 'h'
     },
     {
-      'letter': 'i',
-      'sound': '',
+      'letter': 'i'
     },
     {
-      'letter': 'j',
-      'sound': '',
+      'letter': 'j'
     },
     {
-      'letter': 'k',
-      'sound': '',
+      'letter': 'k'
     },
     {
-      'letter': 'l',
-      'sound': '',
+      'letter': 'l'
     },
     {
-      'letter': 'm',
-      'sound': '',
+      'letter': 'm'
     },
     {
-      'letter': 'n',
-      'sound': '',
+      'letter': 'n'
     },
     {
-      'letter': 'o',
-      'sound': '',
+      'letter': 'o'
     },
     {
-      'letter': 'p',
-      'sound': '',
+      'letter': 'p'
     },
     {
-      'letter': 'q',
-      'sound': '',
+      'letter': 'q'
     },
     {
-      'letter': 'r',
-      'sound': '',
+      'letter': 'r'
     },
     {
-      'letter': 's',
-      'sound': '',
+      'letter': 's'
     },
     {
-      'letter': 't',
-      'sound': '',
+      'letter': 't'
     },
     {
-      'letter': 'u',
-      'sound': '',
+      'letter': 'u'
     },
     {
-      'letter': 'v',
-      'sound': '',
+      'letter': 'v'
     },
     {
-      'letter': 'w',
-      'sound': '',
+      'letter': 'w'
     },
     {
-      'letter': 'x',
-      'sound': '',
+      'letter': 'x'
     },
     {
-      'letter': 'y',
-      'sound': '',
+      'letter': 'y'
     },
     {
-      'letter': 'z',
-      'sound': '',
+      'letter': 'z'
     }
   ],
 }

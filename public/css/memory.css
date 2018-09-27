@@ -1,3 +1,4 @@
+
 #memory-title {
   color: #3A9DD8;
 }
@@ -52,9 +53,10 @@
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
-
+@media screen and (orientation: portrait) {
 #memory .card-front {
   background: url('../images/games/memory/cards-xs.png');
+}
 }
 
 #memory .flipper {
@@ -141,3 +143,4 @@
 
 
 }
+
