@@ -7,6 +7,14 @@
   height: 100%;
 }
 
+ #typeLetter-board {
+   width: 100%;
+ }
+
+ #typeLetter-letters {
+   width: 100%;
+ }
+
 #typeLetter-timer {
   width: 0%;
   height: 2rem;
@@ -14,25 +22,13 @@
 }
 
 .playerLetters {
-  height: 7.5rem;
+  height: 10rem;
   width: 7.5rem;
-  padding: 1.25rem;
   color: #E0E1E0;
   background-color: white;
   border: 5px solid #80D1EC;
   font-size: 6rem;
-  /* text-transform: uppercase; */
   text-align: center;
-}
-
-#playerLetter {
-  animation: animborder 2s infinite;
-}
-
-@keyframes animborder {
-  50% {
-    border-color: #BACB3E;
-  }
 }
 
 
@@ -40,20 +36,17 @@
 @media screen and (min-width: 768px) {
 
   .playerLetters {
-    height: 11.2rem;
-    width: 11.2rem;
-    padding: 1.2rem;
+    height: 14.5rem;
+    width: 8.5rem;
   }
 }
 
 /******************************************************************************************************************/
 @media screen and (min-width: 1024px) {
-  #typeLetter-board {
-    width: 100%;
-  }
-
-  #typeLetter-letters {
-    width: 100%;
+ 
+  .playerLetters {
+    height: 11.5rem;
+    width: 11.5rem;
   }
 }
 

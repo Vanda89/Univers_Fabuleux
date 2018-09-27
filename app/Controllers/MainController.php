@@ -8,12 +8,15 @@ use P5universFabuleux\Utils\User;
 
 class MainController extends CoreController
 {
+    /**
+     * showHome : méthode gérant l'affichage de la page d'accueil avec message de bienvenue personnalisé et pagination des news.
+     */
     public function showHome()
     {
         $user = User::isConnected() ? User::getConnectedUser() : false;
         $welcome = 'Bienvenue ';
         $welcome .= ($user != false) ? $user->getFirstname() : 'visiteur';
-        $welcome .= ',';
+        $welcome .= ' !';
 
         if (isset($_GET['news'])) {
             $news = $_GET['news'];
@@ -33,7 +36,6 @@ class MainController extends CoreController
                 'content' => $news->getContent(),
            ];
             array_push($newsList, $item);
-            \dump($item);
         }
 
         $dataToViews = [
@@ -45,13 +47,16 @@ class MainController extends CoreController
         $this->show('main/home', $dataToViews);
     }
 
+    /**
+     * showGame : méthode permettant d'afficher le jeu désiré grâce à son id indiqué en bdd et sur son bouton de la nav.
+     *
+     * @param mixed $gameId
+     */
     public function showGame($gameId)
     {
-        // \dump($_GET['id']);
         $gameId = $_GET['id'];
         $game = GameModel::find($gameId);
         $gameStyle = $game->getStyle();
-        // \dump($gameStyle);
 
         $dataToViews = [
             'game' => $game,
@@ -65,12 +70,18 @@ class MainController extends CoreController
             case '2':
                 $this->show('game/typeLetter');
                 break;
-            case '3':
-                $this->show('game/mystery');
-                break;
-            case '4':
-                $this->show('game/bubbles');
-                break;
-        }
+            default:
+                $this->show('main/404');
+            }
+    }
+
+    public function show404()
+    {
+        $this->show('main/404');
+    }
+
+    public function show403()
+    {
+        $this->show('main/403');
     }
 }

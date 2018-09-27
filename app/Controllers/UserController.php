@@ -5,6 +5,7 @@ namespace P5universFabuleux\Controllers;
 use P5universFabuleux\Models\UserModel;
 use P5universFabuleux\Models\ThemeModel;
 use P5universFabuleux\Models\AvatarModel;
+use P5universFabuleux\Models\StatsModel;
 use P5universFabuleux\Utils\User;
 
 class UserController extends CoreController
@@ -208,7 +209,7 @@ class UserController extends CoreController
         $avatarList = [];
         foreach ($avatars as $key => $avatar) {
             $item = [
-                // Insertion des image avec l'encodage en MIME
+                // Insertion des images avec l'encodage en MIME
                 'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
                 // Rajoute un attribut HTML pour l'autosélection
                 'isChecked' => (intval($user->getAvatar_id()) === $key + 1) ? 'checked' : '',
@@ -217,38 +218,53 @@ class UserController extends CoreController
             array_push($avatarList, $item);
         }
 
+        $newScoreMemory = StatsModel::findNewScore('Memory', $user->getId());
+        $gameList['memory']['newScore']['score'] = $newScoreMemory->getScore();
+        $gameList['memory']['newScore']['time'] = $newScoreMemory->getGame_time();
+
+        $bestScoreMemory = StatsModel::findBestScore('Memory', $user->getId());
+        $gameList['memory']['bestScore']['score'] = $bestScoreMemory->getScore();
+        $gameList['memory']['bestScore']['time'] = $bestScoreMemory->getGame_time();
+
+        $newScoreTypeletter = StatsModel::findNewScore('Tape-lettre', $user->getId());
+        $gameList['typeletter']['newScore']['score'] = $newScoreTypeletter->getScore();
+        $gameList['typeletter']['newScore']['time'] = $newScoreTypeletter->getGame_time();
+
+        $bestScoreTypeletter = StatsModel::findBestScore('Tape-lettre', $user->getId());
+        $gameList['typeletter']['bestScore']['score'] = $bestScoreTypeletter->getScore();
+        $gameList['typeletter']['bestScore']['time'] = $bestScoreTypeletter->getGame_time();
+
         $dataToViews = [
             'themeList' => $themeList,
             'avatarList' => $avatarList,
+            'gameList' => $gameList,
         ];
+
+        dump($gameList);
 
         // Affiche la page de profil correspondant au rôle de l'utilisateur
         if ($isAdmin === true) {
             $this->show('user/profileAdmin', $dataToViews);
         } elseif ($user != null) {
             $this->show('user/profile', $dataToViews);
+        } else {
+            $this->show('main/403');
         }
     }
 
     /**
-     * saveProfile : méthode retrétant les données de la page de profil afin de modifier en bdd ce qui est différent.
+     * saveProfile : méthode retraitant les données de la page de profil afin de modifier en bdd ce qui est différent.
      */
     public function saveProfile()
     {
         $errorList = [];
 
-        $user = User::isConnected() ? User::getConnectedUser() : false;
-
         if (!empty($_POST)) {
-            $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
-            $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
+            $avatar = isset($_POST['avatar']) ? trim($_POST['avatar']) : '';
+            $firstname = isset($_POST['firstname']) ? trim($_POST['firstname']) : '';
             $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
             $theme_id = isset($_POST['theme']) ? $_POST['theme'] : '';
-            $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
-
-            $firstname = trim($firstname);
-            $birthday = trim($birthday);
-            $mail = trim($mail);
+            $mail = isset($_POST['mail']) ? trim($_POST['mail']) : '';
 
             if (empty($avatar) || empty($firstname) || empty($birthday) || empty($theme_id) || empty($mail)) {
                 $errorList[] = 'Tous les champs sont obligatoires.';
@@ -392,5 +408,33 @@ class UserController extends CoreController
             'type' => 'addContent',
             ]);
         }
+    }
+
+    public function setStats()
+    {
+        if (!empty($_POST)) {
+            $game = isset($_POST['game']) ? $_POST['game'] : '';
+            $mode = isset($_POST['mode']) ? $_POST['mode'] : '';
+            $score = isset($_POST['score']) ? $_POST['score'] : '';
+            $time = isset($_POST['time']) ? $_POST['time'] : '';
+        }
+
+        $date = date('Y-m-d H:i:s');
+
+        \dump($_POST);
+        $user = User::isConnected() ? User::getConnectedUser() : false;
+
+        if (User::isConnected() === true) {
+            $currentStatsModel = new StatsModel();
+            $currentStatsModel->setUser_id($user->getId());
+            $currentStatsModel->setGame_name($game);
+            $currentStatsModel->setPlay_date($date);
+            $currentStatsModel->setGame_mode($mode);
+            $currentStatsModel->setScore($score);
+            $currentStatsModel->setGame_time($time);
+            $currentStatsModel->add();
+        }
+
+        dump($currentStatsModel);
     }
 }

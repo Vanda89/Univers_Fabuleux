@@ -158,6 +158,7 @@ class UserModel
         $pdoStatement->bindValue(':avatar_id', $this->avatar_id, PDO::PARAM_INT);
         $pdoStatement->execute();
 
+        // Contrôle pour vérifier si les données ont bien été modifiées
         $affectedRows = $pdoStatement->rowCount();
 
         return $affectedRows > 0;

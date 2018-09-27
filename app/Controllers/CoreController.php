@@ -32,54 +32,44 @@ abstract class CoreController
         $userTheme = null;
         $themeStyle = null;
 
-        // dump($connectedUser);
         if (User::isConnected() === true) {
             $connectedUser = User::getConnectedUser();
             $userTheme = ThemeModel::find($connectedUser->getTheme_id());
             $themeStyle = $userTheme->getStyle();
         }
 
-        // On transmet des données à toutes les views
+        // Transmission des données à toutes les views
         $this->templateEngine->addData([
-            'router' => $this->router, // => $router dans toutes les views
-            'basePath' => $app->getConfig('BASE_PATH'), // => $basePath
+            'router' => $this->router,
+            'basePath' => $app->getConfig('BASE_PATH'),
             'connectedUser' => $connectedUser,
             'themeStyle' => $themeStyle,
             ]);
     }
 
-    // Méthode permettant d'afficher la view correspondante pour une page
+    /**
+     * show : Méthode permettant d'afficher la view correspondante à une page avec construction du template et retour du résultat grâce à "render".
+     *
+     * @param string $templateName
+     * @param mixed array
+     */
     protected function show(string $templateName, array $dataToViews = [])
     {
         $viewFolder = '';
 
-        // Construction du template et retour du résultat grâce à "render"
         echo $this->templateEngine->render($viewFolder.$templateName, $dataToViews);
     }
 
-    // Méthode permettant d'afficher une réponse JSON
+    /**
+     * sendJson :  Méthode permettant d'afficher une réponse JSON.
+     *
+     * @param mixed $data
+     */
     protected static function sendJson($data)
     {
         header('Content-Type: application/json');
         echo json_encode($data);
         exit;
-    }
-
-    // Méthode renvoyant sur une page d'erreur (404, 403, 500, etc.)
-    public static function sendHttpError($errorCode)
-    {
-        // Erreur 404 not found
-        if ($errorCode == 404) {
-            header('HTTP/1.0 404 Not Found');
-
-            exit;
-        }
-        // Erreur 403 Forbidden = vousn'avez pas les droits pour accéder à cette ressource
-        elseif ($errorCode == 403) {
-            header('HTTP/1.0 403 Forbidden');
-
-            exit;
-        }
     }
 
     /**

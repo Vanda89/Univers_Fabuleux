@@ -3,6 +3,7 @@
 namespace P5universFabuleux;
 
 use AltoRouter; // => import AltoRouter
+use P5universFabuleux\Controllers\MainController;
 
 // FrontController
 class Application
@@ -36,8 +37,6 @@ class Application
         $this->router->map('GET', '/cgu', 'MainController#cgu', 'main_cgu');
         // 1 jeu
         $this->router->map('GET', '/game', 'MainController#showGame', 'game_game');
-
-        $this->router->map('POST', '/setScore', 'MainController#setScore', 'main_setScore');
         // Mentions légales
         $this->router->map('GET', '/legal-notice', 'MainController#legalNotice', 'main_legalnotice');
         // Inscription
@@ -55,7 +54,10 @@ class Application
         // Enregistrement des nouvelles données
         $this->router->map('POST', '/profile/save', 'UserController#saveProfile', 'user_saveProfile');
         // Changement de mot de passe
-        $this->router->map('POST', '/profile/password', 'UserController#changePassword', 'user_changePassword');
+        $this->router->map('POST', '/profile/password',
+        'UserController#changePassword', 'user_changePassword');
+
+        $this->router->map('POST', '/setStats', 'UserController#setStats', 'user_setStats');
         // Ajout de contenu dans la page de profilAdmin
         $this->router->map('POST', '/profile/addContent', 'UserController#addContent', 'user_addContent');
     }
@@ -89,7 +91,8 @@ class Application
         }
         // Si aucune route ne correspond à l'URL courante
         else {
-            echo 'PAS DE ROUTE CORRESPONDANTE';
+            $controller = new MainController();
+            $controller->show('main/404');
         }
     }
 

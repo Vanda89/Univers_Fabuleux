@@ -5,12 +5,15 @@ namespace P5universFabuleux\Models;
 use P5universFabuleux\Utils\Database;
 use PDO;
 
-class GameModel
+class StatsModel
 {
     private $id;
+    private $game_name;
     private $play_date;
-    private $scores;
+    private $game_mode;
+    private $score;
     private $game_time;
+    private $user_id;
 
     /**
      * findAll.
@@ -18,7 +21,7 @@ class GameModel
     public static function findAll()
     {
         $sql = '
-            SELECT id, play_date, scores, game_time
+            SELECT *
             FROM stats
             ORDER BY play_date DESC
         ';
@@ -36,51 +39,52 @@ class GameModel
     }
 
     /**
-     * findAllByPagination.
+     * findBestScore.
      *
-     * @param mixed $page
-     * @param mixed $nbPostByPage
+     * @param mixed $user_id
      */
-    public static function findAllByPagination($page, $nbPostByPage)
-    {
-        $start = ($page - 1) * $nbPostByPage;
-        $sql = '
-            SELECT id, play_date, scores, game_time
-            FROM stats
-            ORDER BY play_date DESC
-            LIMIT '.$start.', '.$nbPostByPage.'
-        ';
-        // On récupère la connextion PDO à la DB
-        $pdo = Database::dbConnect();
-
-        // On exécute la requête
-        $pdoStatement = $pdo->query($sql);
-
-        // Récupération des résultats sous forme de tableau d'objet
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
-
-        // On retourne les résultats
-        return $results;
-    }
-
-    /**
-     * find.
-     *
-     * @param mixed $id
-     */
-    public static function find($id)
+    public static function findBestScore($game_name, $user_id)
     {
         $sql = '
-            SELECT id, play_date, scores, game_time
+            SELECT * 
             FROM stats
-            WHERE id = (:id)
+            WHERE game_name = :game_name AND user_id = :user_id 
+            ORDER BY score DESC, game_time ASC 
+            LIMIT 1
         ';
         // On récupère la connextion PDO à la DB
         $pdo = Database::dbConnect();
         // On prépare une requête à l'exécution et retourne un objet
         $pdoStatement = $pdo->prepare($sql);
         // Association des valeurs aux champs de la bdd et paramètrage du retour
-        $pdoStatement->bindValue(':idPost', $idPost, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':game_name', $game_name, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchObject(self::class);
+    }
+
+    /**
+     * findNewScore.
+     *
+     * @param mixed $user_id
+     */
+    public static function findNewScore($game_name, $user_id)
+    {
+        $sql = '
+            SELECT * 
+            FROM stats
+            WHERE game_name = :game_name AND user_id = :user_id 
+            ORDER BY play_date DESC 
+            LIMIT 1
+        ';
+        // On récupère la connextion PDO à la DB
+        $pdo = Database::dbConnect();
+        // On prépare une requête à l'exécution et retourne un objet
+        $pdoStatement = $pdo->prepare($sql);
+        // Association des valeurs aux champs de la bdd et paramètrage du retour
+        $pdoStatement->bindValue(':game_name', $game_name, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         $pdoStatement->execute();
 
         return $pdoStatement->fetchObject(self::class);
@@ -90,14 +94,14 @@ class GameModel
      * add.
      *
      * @param mixed $play_date
-     * @param mixed $scores
+     * @param mixed $score
      * @param mixed $game_time
      */
-    public static function add($play_date, $scores, $game_time)
+    public function add()
     {
         $sql = '
-            INSERT INTO stats (play_date, scores, game_time)
-            VALUES (NOW(), :scores, :game_time)
+            INSERT INTO stats (game_name, play_date, game_mode, score, game_time, user_id)
+            VALUES (:game_name, :play_date, :game_mode, :score, :game_time, :user_id)
         ';
 
         // On récupère la connextion PDO à la DB
@@ -105,9 +109,12 @@ class GameModel
         // On prépare une requête à l'exécution et retourne un objet
         $pdoStatement = $pdo->prepare($sql);
         // Association des valeurs aux champs de la bdd et paramètrage du retour
-        $pdoStatement->bindValue(':play_date', $play_date, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':scores', $scores, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':game_time', $game_time, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':game_name', $this->game_name, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':play_date', $this->play_date, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':game_mode', $this->game_mode, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':score', $this->score, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':game_time', $this->game_time, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
         $pdoStatement->execute();
     }
 
@@ -132,41 +139,125 @@ class GameModel
     }
 
     /**
-     * Get the value of scores.
+     * Get the value of game_name.
      */
-    public function getScores()
+    public function getGame_name()
     {
-        return $this->scores;
+        return $this->game_name;
     }
 
     /**
-     * Set the value of scores.
+     * Set the value of game_name.
      *
      * @return self
      */
-    public function setScores($scores)
+    public function setGame_name($game_name)
     {
-        $this->scores = $scores;
+        $this->game_name = $game_name;
 
         return $this;
     }
 
     /**
-     * Get the value of games_time.
+     * Get the value of play_date.
      */
-    public function getGames_time()
+    public function getPlay_date()
     {
-        return $this->games_time;
+        date_default_timezone_set('Europe/Paris');
+        $datetime = null;
+        $ts = strtotime($datetime.' GMT');
+
+        return strftime($this->play_date, $datetime);
     }
 
     /**
-     * Set the value of games_time.
+     * Set the value of play_date.
      *
      * @return self
      */
-    public function setGames_time($game_time)
+    public function setPlay_date($play_date)
     {
-        $this->games_time = $game_time;
+        $this->play_date = $play_date;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of game_mode.
+     */
+    public function getGame_mode()
+    {
+        return $this->game_mode;
+    }
+
+    /**
+     * Set the value of game_mode.
+     *
+     * @return self
+     */
+    public function setGame_mode($game_mode)
+    {
+        $this->game_mode = $game_mode;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of score.
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * Set the value of score.
+     *
+     * @return self
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of game_time.
+     */
+    public function getGame_time()
+    {
+        return $this->game_time;
+    }
+
+    /**
+     * Set the value of game_time.
+     *
+     * @return self
+     */
+    public function setGame_time($game_time)
+    {
+        $this->game_time = $game_time;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user_id.
+     */
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set the value of user_id.
+     *
+     * @return self
+     */
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

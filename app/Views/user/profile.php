@@ -17,7 +17,7 @@
       <input type="hidden" name="id" value="<?= $connectedUser->getId(); ?>">
 
       <div class="form-group container d-flex flex-column align-items-center justify-content-center mb-5">
-        <h3 class="title-category row my-5">Profil de l'enfant</h3>
+        <h3 class="title-category row my-5">Profil</h3>
 
         <div class="form-row row d-flex justify-content-center col-12 p-0 ">
           <div class="form-inline d-flex flex-column justify-content-between col-xs-10 col-md-12 mb-4 pl-0">
@@ -57,20 +57,18 @@
 
             </select>
           </div>
-        </div>
-      </div>
-
-      <div class="form-group container d-flex flex-column align-items-center justify-content-center mb-5 ">
-        <h3 class="title-category row text-center my-5">Informations de compte</h3>
-
-        <div class="form-row d-flex justify-content-center col-12 p-0 ">
-          <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
-            <label for="mail" class="form-label font-weight-bold mb-2">Adresse mail actuelle :</label>
-            <input type="email" class="form-control col-md-6 " name="mail" id="mail" value="<?= $connectedUser->getMail(); ?>"
-              required="required">
+          <div class="form-row d-flex justify-content-center col-12 p-0 ">
+            <div class="form-inline d-flex justify-content-between col-xs-10 col-md-12 mb-4">
+              <label for="mail" class="form-label font-weight-bold mb-2">Adresse mail actuelle :</label>
+              <input type="email" class="form-control col-md-6 " name="mail" id="mail" value="<?= $connectedUser->getMail(); ?>"
+                required="required">
+            </div>
           </div>
         </div>
       </div>
+
+
+
 
       <button type="submit" class="form-btn btn text-light btn-lg text-capitalize mb-4" name="profile-btn">enregistrer</button>
     </form>
@@ -130,41 +128,28 @@
       </div>
     </div>
 
-    <div class="row align-self-center text-capitalize d-flex justify-content-center mb-5">
+    <div class="row align-self-center text-capitalize d-flex justify-content-center  mb-5">
       <h3 class="title-category  my-5">statistiques</h3>
-      <div class="container d-flex flex-column justify-content-center align-items-center align-items-lg-stretch col-lg-12">
-        <div class="games-row row d-flex flex-column flex-md-row justify-content-around align-items-around ">
-          <div id="game-1" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-1" class="">score</p>
-            <p id="time-game-1" class="">time</p>
-          </div>
 
-          <div id="game-2" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-2" class="">score</p>
-            <p id="time-game-2" class="">time</p>
+      <div id="stats-container" class="container d-flex flex-column justify-content-center align-items-center ">
+        <div class=" d-flex flex-column flex-md-row justify-content-xs-center justify-content-between align-items-center mb-5">
+          <?php foreach ($gameList as $index => $game) : ?>
+          <div class="row d-flex flex-row align-items-center justify-content-center col-xs-12 col-6">
+            <h4 id="gameName" class="text-center pb-4"><?= $index; ?></h4>
+            <div id="stats" class="d-flex flex-row justify-content-between align-items-center text-center w-100">
+              <div class="d-flex flex-column">
+                <h5 id="new-score" class="gameStats">Nouveau score </h5>
+                <p class="score d-flex justify-content-center mb-0 p-2"><?= $game['newScore']['score']; ?><i class="starProfile align-self-center fas fa-star pl-2 pb-1"></i></p>
+                <p class="time mb-0 p-2"><?= $game['newScore']['time']; ?></p>
+              </div>
+              <div class="d-flex flex-column ">
+                <h5 id="best-score" class="gameStats">Meilleur score </h5>
+                <p class="score d-flex justify-content-center mb-0 p-2"><?= $game['bestScore']['score']; ?><i class="starProfile align-self-center fas fa-star pl-2 pb-1"></i></p>
+                <p class="time mb-0 p-2"><?= $game['bestScore']['time']; ?></p>
+              </div>
+            </div>
           </div>
-
-          <div id="game-3" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3">
-            <p id="score-game-3" class="">score</p>
-            <p id="time-game-3" class="">time</p>
-          </div>
-        </div>
-
-        <div class="games-row row d-flex flex-column flex-md-row justify-content-around align-items-around">
-          <div id="game-4" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-4" class="">score</p>
-            <p id="time-game-4" class="">time</p>
-          </div>
-
-          <div id="game-5" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3 mr-2">
-            <p id="score-game-5" class="">score</p>
-            <p id="time-game-5" class="">time</p>
-          </div>
-
-          <div id="game-6" class="stats-game d-flex flex-column justify-content-center align-items-center mb-3">
-            <p id="score-game-6" class="">score</p>
-            <p id="time-game-6" class="">time</p>
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>

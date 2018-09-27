@@ -7,11 +7,6 @@
   </div>
 
   <section id="carouselGames" class="carousel slide container mb-5" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselGames-row" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselGames-row" data-slide-to="1"></li>
-    </ol>
-
     <div class="carousel-inner d-flex justify-content-center mb-5">
       <div class="carousel-item row active ">
         <img src="../public/images/slides/Screenshot_Memory_mobile.jpg" class="mobile-screenshot d-sm-none" alt="Screenshot du jeu Memory pour petite résolution">
@@ -21,16 +16,6 @@
       <div class="carousel-item row">
         <img src="../public/images/slides/Screenshot_Tape-lettre_mobile.jpg" class="mobile-screenshot d-sm-none" alt="Screenshot du jeu Tape-lettre pour petite résolution">
         <img src="../public/images/slides/Screenshot_Tape-lettre.jpg" class="full-screenshot d-xs-none d-sm-block" alt="Screenshot du jeu Tape-lettre pour grande résolution">
-
-        <a class="carousel-control-prev" href="#carouselGames-row" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-
-        <a class="carousel-control-next" href="#carouselGames-row" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </div>
   </section>
