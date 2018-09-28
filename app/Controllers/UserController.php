@@ -191,8 +191,8 @@ class UserController extends CoreController
         $user = User::isConnected() ? User::getConnectedUser() : false;
         $isAdmin = User::isAdmin();
 
-        // Si aucun utilisateur n'est pas connecté, protège la page profil avec une 403
-        if ($isAdmin === false || $user === null) {
+        //Si aucun utilisateur n'est pas connecté, protège la page profil avec une 403
+        if (!$user) {
             $this->show('main/403');
         }
 
@@ -223,21 +223,42 @@ class UserController extends CoreController
             array_push($avatarList, $item);
         }
 
+        // Remplissage des statistiques
         $newScoreMemory = StatsModel::findNewScore('Memory', $user->getId());
-        $gameList['memory']['newScore']['score'] = $newScoreMemory->getScore();
-        $gameList['memory']['newScore']['time'] = $newScoreMemory->getGame_time();
+        if ($newScoreMemory === false) {
+            $gameList['memory']['newScore']['score'] = 0;
+            $gameList['memory']['newScore']['time'] = '00:00:00';
+        } else {
+            $gameList['memory']['newScore']['score'] = $newScoreMemory->getScore();
+            $gameList['memory']['newScore']['time'] = $newScoreMemory->getGame_time();
+        }
 
         $bestScoreMemory = StatsModel::findBestScore('Memory', $user->getId());
-        $gameList['memory']['bestScore']['score'] = $bestScoreMemory->getScore();
-        $gameList['memory']['bestScore']['time'] = $bestScoreMemory->getGame_time();
+        if ($bestScoreMemory === false) {
+            $gameList['memory']['bestScore']['score'] = 0;
+            $gameList['memory']['bestScore']['time'] = '00:00:00';
+        } else {
+            $gameList['memory']['bestScore']['score'] = $bestScoreMemory->getScore();
+            $gameList['memory']['bestScore']['time'] = $bestScoreMemory->getGame_time();
+        }
 
         $newScoreTypeletter = StatsModel::findNewScore('Tape-lettre', $user->getId());
-        $gameList['typeletter']['newScore']['score'] = $newScoreTypeletter->getScore();
-        $gameList['typeletter']['newScore']['time'] = $newScoreTypeletter->getGame_time();
+        if ($newScoreTypeletter === false) {
+            $gameList['tape-lettre']['newScore']['score'] = 0;
+            $gameList['tape-lettre']['newScore']['time'] = '00:00:00';
+        } else {
+            $gameList['tape-lettre']['newScore']['score'] = $newScoreTypeletter->getScore();
+            $gameList['tape-lettre']['newScore']['time'] = $newScoreTypeletter->getGame_time();
+        }
 
         $bestScoreTypeletter = StatsModel::findBestScore('Tape-lettre', $user->getId());
-        $gameList['typeletter']['bestScore']['score'] = $bestScoreTypeletter->getScore();
-        $gameList['typeletter']['bestScore']['time'] = $bestScoreTypeletter->getGame_time();
+        if ($bestScoreTypeletter === false) {
+            $gameList['tape-lettre']['bestScore']['score'] = 0;
+            $gameList['tape-lettre']['bestScore']['time'] = '00:00:00';
+        } else {
+            $gameList['tape-lettre']['bestScore']['score'] = $bestScoreTypeletter->getScore();
+            $gameList['tape-lettre']['bestScore']['time'] = $bestScoreTypeletter->getGame_time();
+        }
 
         $dataToViews = [
             'themeList' => $themeList,
@@ -245,7 +266,6 @@ class UserController extends CoreController
             'gameList' => $gameList,
         ];
 
-        dump($isAdmin);
         // Affiche la page de profil correspondant au rôle de l'utilisateur
         if ($isAdmin === true) {
             $this->show('user/profileAdmin', $dataToViews);
