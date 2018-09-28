@@ -229,7 +229,6 @@ section {
 }
 
 .gameStats {
-  color: #BACB3E;
   font-size: 1.35rem;
   font-family: 'Chela One',
     cursive;
@@ -276,6 +275,23 @@ section {
 
 .home-error {
   width: 8rem;
+}
+
+#legalNotice-title {
+  color: #459A45;
+}
+
+#legalNotice h4 {
+  color: #bacb3e;
+   text-shadow: 0 0 5px white,
+   0 0 5px white,
+   0 0 5px white,
+   0 0 5px white,
+   0 0 5px black;
+}
+
+#legalNotice a {
+  color: #459A45;
 }
 
 /********************************GENERAL GAMES********************/
@@ -427,6 +443,10 @@ section {
 
 #gameName {
   color: #F7983C;
+}
+
+.gameStats {
+  color: #BACB3E;
 }
 
 footer {

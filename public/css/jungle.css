@@ -14,6 +14,9 @@ section {
 
 .title-category {
   color: #FF6370;
+  text-shadow: 0 0 5px white,
+  0 0 5px white,
+  0 0 5px white;
 }
 
 #news-container-title {
@@ -45,6 +48,17 @@ section {
 
 .avatar img {
   border: 3px solid #48CA4E;
+}
+
+#gameName {
+  color: #21A08F;
+   text-shadow: 0 0 5px white,
+   0 0 5px white,
+   0 0 5px white;
+}
+
+.gameStats {
+  color: #AFF89E;
 }
 
 footer {

@@ -54,6 +54,19 @@ section,
   border: 3px solid #AFCAFF;
 }
 
+#gameName {
+  color: #AFCAFF;
+   text-shadow: 0 0 5px white,
+   0 0 5px white,
+   0 0 5px white;
+}
+
+.gameStats {
+  color: rgb(231, 122, 110);
+  text-shadow: 0 0 5px white,
+  0 0 5px white,
+  0 0 5px white;
+}
 
 footer {
   background-color: #80D1EC;
