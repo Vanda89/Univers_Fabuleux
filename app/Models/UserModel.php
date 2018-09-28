@@ -230,7 +230,7 @@ class UserModel
      */
     public function getBirthday()
     {
-        return $this->birthday;
+        return date('d-m-Y H:i:s', strtotime($this->birthday));
     }
 
     /**
