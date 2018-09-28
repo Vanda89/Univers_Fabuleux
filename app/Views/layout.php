@@ -18,10 +18,10 @@
   <link rel="stylesheet" href="<?= $basePath; ?>/css/style.css" rel="stylesheet" type="text/css">
 
   <?php if (isset($themeStyle)) :?>
-    <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= $themeStyle; ?>" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= $themeStyle; ?>.css" rel="stylesheet" type="text/css">
   <?php endif; ?>
   <?php if (isset($gameStyle)) :?>
-    <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= $gameStyle; ?>" rel="stylesheet" type="text/css">                                     
+    <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= $gameStyle; ?>.css" rel="stylesheet" type="text/css">                                     
   <?php endif; ?>
 
   <!-- Favicon -->

@@ -1,5 +1,5 @@
 <?php $this->layout('layout', ['title' => 'Tape-lettre',
-                                'gameStyle' => 'typeLetter.css', ]); ?>
+                                'gameStyle' => 'typeLetter', ]); ?>
 
 <main class="row mt-2 mb-5">
   <section id="typeLetter-container" class="game-container container d-flex flex-column justify-content-start align-items-center">
