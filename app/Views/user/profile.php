@@ -7,10 +7,10 @@
     </header>
 
     <div id="errors" class="alert errors-hide row text-center px-2" role="alert">
-      <button type="button" class="close pb-1" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <div class="errorsContent d-flex align-items-center justify-content-center text-center pl-1"></div>
+      <div class="errorsContent d-flex align-items-center justify-content-center text-center pt-2 pl-1"></div>
     </div>
 
     <form action="" method="post" id="saveProfile" class="form row d-flex flex-column align-items-center justify-content-around mb-5">
