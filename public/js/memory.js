@@ -9,35 +9,30 @@ var memory = {
   cardsReveal: [],
   // Permet d'afficher ou non une nouvelle carte
   canShowingCard: true,
-
+  // Démarrage du jeu
   gameStart: false,
-
+  // 
   playerGameTime: new Timer(),
 
   playerTime: null,
 
 
-
   init: function () {
-    console.log('memory init');
     // Lancement du jeu
     memory.startGame();
-
   },
 
+  // Génère le conteneur 'game' en HTML et appelle createMenu()
   startGame: function () {
-
-    // Génère le conteneur 'game' en HTML
     $('<div>').attr('id', 'memory')
       .addClass('game d-flex flex-column justify-content-between align-items-center')
       .appendTo('#memory-container')
 
-    // Génère le menu 
     memory.createMenu();
   },
 
+  // Permet de mélanger le tableau de cartes
   shuffleCards: function (array) {
-    // Permet de mélanger le tableau de cartes
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var x = array[i];
@@ -47,8 +42,9 @@ var memory = {
     return array;
   },
 
+  // Génère en HTML des boutons de difficulté et de leur conteneur, et ajoute sur eux des évènements
+  // pour avoir la difficulté appropriée
   createMenu: function () {
-    // Génération en HTML des boutons de difficulté et de leur conteneur
     $('<div>').addClass('difficulty-container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-around align-items-center')
       .append($('<div>')
         .attr('id', 'easy')
@@ -63,8 +59,11 @@ var memory = {
         .addClass('btn  mb-4 mr-lg-2')
         .text('Difficile'))
       .appendTo('#memory');
-    // Ajout d'un événement aux boutons pour générer le jeu avec la difficulté memoryropriée
+   
     $('#easy').click(function () {
+      memory.createBoard('easy')
+    });
+    $('#easy').touchstart(function () {
       memory.createBoard('easy')
     });
     $('#normal').click(function () {
@@ -75,13 +74,14 @@ var memory = {
     });
   },
 
+  // Supprime l'interface du menu pour générer le board avec association 
+  // de la difficulté du jeu avec les paramètres grâce aux objets
   createBoard: function (level) {
     memory.gameStart = true;
     memory.playerGameTime.start();
-    // Supprime l'interface précédente
+  
     $('.difficulty-container').remove();
 
-    // Objets servant à paramètrer le jeu
     var easy = {
       timer: 240,
       board: 12,
@@ -100,7 +100,6 @@ var memory = {
     var timer;
     var cardsNumber;
 
-    // Associe la difficulté du jeu avec les paramètres
     switch (level) {
       case 'easy':
         timer = easy.timer;
@@ -120,30 +119,29 @@ var memory = {
     }
 
     memory.totalPair = cardsNumber / 2;
-    // Génération du plateau de jeu avec HTML la taille appropriée
+
     $('<div>')
       .attr('id', 'memory-board')
       .addClass('game-board d-flex flex-wrap justify-content-around align-items-center col-sm-10 col-xl-8')
       .appendTo('#memory')
-    // Ajoute les cartes au plateau
+
     memory.generateCards(cardsNumber);
-    // 
     memory.score();
-    // Et lance le compteur
     memory.startTimer(timer);
 
   },
 
+  // Génère les cartes avec la bonne taille, association par paire, mélange de la pile 
+  // et les ajoute sur le plateau
   generateCards: function (cardsBoard) {
     var cards = [];
     var cardsSize = 100;
     // sprite Css ajouté + 100 pour une image
     var backgroundPos = 0;
-    // Pour l'association de cartes par paires
     var pair = 1;
     var id = 1;
     for (var cardNumber = 0; cardNumber < cardsBoard; cardNumber++) {
-      // Génération HTML des cartes
+     
       cards[cardNumber] = $('<div>')
         .addClass('card')
         .on('click', memory.showCard)
@@ -163,24 +161,25 @@ var memory = {
       } else if (window.screen.width < 768) {
         cardsSize = 100;
       }
-      // Association des cartes par paire.
+      
       if (pair > 2) {
         backgroundPos += cardsSize;
         pair = 1;
         id++
       }
     }
-    // Mélange de la pile de cartes
+  
     memory.shuffleCards(cards);
-    // Et les ajoute sur le plateau
+   
     cards.forEach(function (card) {
       card.appendTo('#memory-board');
     })
   },
 
+  // Fait apparaître directement les cartes avec un effet de flip si les conditions sont bonnes
+  // data = isPair empêche un nouvel affichage si une paire est trouvée
   showCard: function () {
-    // Fait apparaître directement les cartes avec un effet de flip si les conditions sont bonnes
-    // data = isPair empêche un nouvel affichage si une paire est trouvée
+    
     if (!$(this).data('isPair') && memory.cardsReveal.length < 2 && memory.canShowingCard) {
       $(this).data('isPair', true);
       $(this).addClass('flip');
@@ -193,40 +192,33 @@ var memory = {
       memory.isSameCards();
     }
   },
-
+ 
   isSameCards: function () {
-
     var delayClean = 2600;
     var delayShowResult = 350;
-
-    // console.log(memory.playerPair); 
-    // console.log(memory.totalPair);
-    console.log(memory.cardsReveal[0].data('id'));
-    console.log(memory.cardsReveal[1].data('id'));
-
 
     // Compare si les deux cartes révélées ont le même id
     if (memory.cardsReveal[0].data('id') === memory.cardsReveal[1].data('id')) {
       memory.canShowingCard = false;
       memory.playerPair++;
 
+      // Affiche le message de victoire et incrémente le score
       setTimeout(function () {
-        // Affiche le message de victoire
         memory.showResult(true);
         memory.updateScore();
       }, delayShowResult);
 
-      // Efface le message
+      // Efface le message et passe à une autre lettre
       setTimeout(function () {
         $('.resultMessage').text('');
         memory.canShowingCard = true;
       }, delayClean);
 
 
-      // Teste si le nombre total de paires trouvé est égal au nombre total de paires sur le plateau
+      // Teste si le nombre total de paires trouvé est égal au nombre total de paires sur le plateau et si true...
+      // Affiche le tableau de score et envoit  les stats en Ajax
       if (memory.playerPair === memory.totalPair) {
         setTimeout(function () {
-          // Affiche le tableau de score
           memory.showEndResult();
           memory.sendStatsInAjax(memory.mode, memory.currentIndex, memory.playerTime);
         }, delayShowResult);
@@ -236,12 +228,11 @@ var memory = {
       memory.cardsReveal = [];
 
     } else {
-      // Empêche de cliquer sur une autre carte
-      memory.canShowingCard = false;
-      setTimeout(function () {
-        // Affiche le message de défaite
-        memory.showResult(false);
-      }, delayShowResult);
+        setTimeout(function () {
+          // Affiche le message de défaite
+          memory.showResult(false);
+        }, delayShowResult);
+        memory.canShowingCard = false;
 
       // Efface le message
       setTimeout(function () {
@@ -253,9 +244,9 @@ var memory = {
     }
   },
 
+  // Cache les cartes avec un effet de flip
+  // data = isPair empêche un nouvel affichage si une paire est trouvée
   hideCard: function () {
-    // Cache les cartes avec un effet de flip
-    // data = isPair empêche un nouvel affichage si une paire est trouvée
     for (var card = 0; card < memory.cardsReveal.length; card++) {
       memory.cardsReveal[card].removeClass('flip');
       memory.cardsReveal[card].removeClass('flip');
@@ -266,14 +257,15 @@ var memory = {
     memory.cardsReveal = [];
   },
 
+  // Lancement de l'animation de la barre servant de timer, quand elle est finie affiche le tableau de score
   startTimer: function (timer) {
-    // Quand le compteur est fini, le jeu est fini
     $('<div>').addClass('game-timer align-self-start mb-5').appendTo('#memory');
     $('.game-timer').animate({
       width: "100%"
     }, timer * 1000, memory.showEndResult)
   },
 
+  // Génération HTML du score et des messages de réussites ou d'échec
   score: function () {
     $('<div>').attr('id', 'memory-infos').addClass('game-infos d-flex flex-column-reverse align-items-center justify-content-around text-center my-3')
       .append($('<div>')
@@ -284,17 +276,15 @@ var memory = {
         .append($('<i>')
           .addClass('star fas fa-star d-flex')))
       .appendTo('#memory-board');
-
-    // this.score = this.currentIndex;
     $('.score').text(memory.playerPair);
-
   },
 
+  // Incrémentation du score
   updateScore: function () {
     $('.score').text(memory.playerPair);
   },
 
-  // Messages après fin du jeu
+  // Remplissage des messages de réussite ou d'échec avec animation du texte
   showResult: function (isWin) {
     if (isWin === true) {
       $('.resultMessage').text('bravo').removeClass('pulse flash').addClass('win animated tada infinite');
@@ -331,26 +321,25 @@ var memory = {
           .text('rejouer'))
         .appendTo('#memory');
 
-
       $('.replay').click(function () {
         memory.resetGame();
       });
     }
   },
 
+  // Réinitialisation du jeu
   resetGame: function () {
-    // Réinitialise tout le jeu
     $('#memory').remove();
     memory.playerPair = 0;
     memory.totalPair = 0;
     memory.canShowingCard = true;
     memory.cardsReveal = [];
-    //restarting game
+
     memory.startGame();
     memory.updateScore();
   },
 
-  // Méthode permettant l'envoi des statistiques
+  // Envoi des statistiques en Ajax pour qu'ils soient introduits en bdd
   sendStatsInAjax: function () {
     $.ajax({
       url: "./setStats",

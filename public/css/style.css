@@ -95,6 +95,10 @@ section {
   border-radius: 32px;
 }
 
+.section-header {
+  width: 98%;
+}
+
 #carouselGames {
   width: 100%;
   background: none;
@@ -258,7 +262,7 @@ section {
 }
 
 .errorsContent {
-  width: 12rem
+  width: 16rem
 }
 
 .close {
@@ -489,7 +493,6 @@ footer {
   .carousel-item .full-screenshot {
     display: block;
     width: 100%;
-   
     border-radius: 15px;
   }
 }
@@ -516,7 +519,7 @@ footer {
   }
 
   .errorsContent {
-    width: 14rem
+    width: 20rem
   }
 
   .close {
@@ -598,6 +601,11 @@ footer {
       -webkit-transform: translateY(-20px);
       transform: translateY(-20px);
     }
+  }
+
+  .carousel-item .full-screenshot {
+    width: 100%;
+    height: 28rem;
   }
 
   /****************GAMES******************/

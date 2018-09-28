@@ -1,8 +1,6 @@
 var app = {
 
   init: function () {
-    console.log('init app');
-
     // Soumission de tous les formulaires
     $('#formLogin').on('submit', {
       url: "./loginSubmit"

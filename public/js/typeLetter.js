@@ -9,42 +9,34 @@ var typeLetter = {
   playerLetter: null,
   // Démarrage du jeu
   gameStart: false,
-  // Possibilité de taper une lettre
+  // Permet de taper une lettre
   canTypeLetter : true,
-
+  //
   playerGameTime: new Timer(),
-
+  //
   playerTime: null,
 
-  date: new Date(),
 
   init: function () {
-    console.log('typeLetter init');
-    typeLetter.gameStart = false;
-   
     // Lancement du jeu
     typeLetter.startGame();
   },
 
-  // Méthode de démarrage du jeu écoutant la touche tapé par le joueur
+  // Méthode de démarrage du jeu 
   startGame: function () {
-    
-      // Génère le conteneur 'game' en HTML
-      $('<div>').attr('id', 'typeLetter')
-        .addClass('game d-flex flex-column justify-content-between align-items-center')
-        .appendTo('#typeLetter-container')
-      // Génère le menu 
-      typeLetter.createMenu();
+    // Génération du conteneur 'game' en HTML
+    $('<div>').attr('id', 'typeLetter')
+      .addClass('game d-flex flex-column justify-content-between align-items-center')
+      .appendTo('#typeLetter-container')
+    // Appel du menu 
+    typeLetter.createMenu();
 
     // Affectation des lettres mélangées au tableau mixedLetters
     typeLetter.mixedLetters = typeLetter.shuffleLetters(data.alphabetLetters);
-    // console.log(typeLetter.mixedLetters);
-
+  
+    // Ecoute de la touche tapé par le joueur
     $('body').keyup(function (evt) {
-      // console.log(evt.originalEvent.key);
-      // console.log(typeLetter.canTypeLetter);
-      
-      // S'il peut taper une lettre et que c'est bien une lettre -> affichage
+      // S'il peut taper une lettre et que c'est bien une lettre -> affichage de la lettre dans la div
       if (typeLetter.canTypeLetter === true && typeLetter.isValidLetter(evt.originalEvent.key)) {
         $('#playerLetter').text(evt.originalEvent.key);
 
@@ -55,7 +47,7 @@ var typeLetter = {
           typeLetter.updateScore();
 
           
-          // Teste si il reste encore des lettres à trouver
+          // Teste s'il reste encore des lettres à trouver
             setTimeout(function () {
             if (typeLetter.mixedLetters.length  != typeLetter.currentIndex) {
              typeLetter.updateLetters(typeLetter.mixedLetters[typeLetter.currentIndex]);
@@ -70,7 +62,7 @@ var typeLetter = {
             }
           }, 2200);
       
-          // Si c'est pas la bonne lettre mais qu'il reste des lettres
+          // Si c'est pas la bonne lettre mais qu'il reste des lettres, affichage du message de défaite
         } else if (typeLetter.playerLetter != typeLetter.mixedLetters[typeLetter.currentIndex].letter && typeLetter.mixedLetters.length - 1 != typeLetter.currentIndex) {
           typeLetter.showResult(false);
         }
@@ -81,7 +73,7 @@ var typeLetter = {
            typeLetter.canTypeLetter = true;
          }, 2500);
 
-         // S'il peut inscrire une lettre mais que ce n'est pas une lettre
+         // S'il peut inscrire une lettre mais que ce n'est pas une lettre, affichade du message d'erreur avec animation
       } else if (typeLetter.canTypeLetter === true && (typeLetter.isValidLetter(evt.originalEvent.key) === false)) {
         $('.resultMessage').text('Appuie sur une lettre !').removeClass('pulse tada infinite').addClass('animated flash infinite');        
       }
@@ -99,8 +91,8 @@ var typeLetter = {
     return array;
   },
 
-
-  // Génération du menu avec les boutons de difficulté et des écouteurs d'événement dessus pour générer le jeu avec la difficulté appropriée
+  // Génère en HTML des boutons de difficulté et de leur conteneur, et ajoute sur eux des évènements
+  // pour avoir la difficulté appropriée
   createMenu: function () {
     $('<div>').addClass('difficulty-container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-around align-items-center mt-3')
       .append($('<button>')
@@ -121,16 +113,14 @@ var typeLetter = {
     });
   },
 
-  // Méthode permettant la génération du tableau correspondant au mode demandé
+  // Supprime l'interface du menu pour générer tout le board avec association 
+  // de la difficulté du jeu avec les paramètres grâce aux objets
   createBoard: function (level) {
     typeLetter.gameStart = true;
     typeLetter.playerGameTime.start();
-    // Supprime l'interface précédente
+   
     $('.difficulty-container').remove();
 
-    // this.timer = 6000;
-
-    // Objets servant à paramètrer le jeu
     var uppercase = {
       timer: 300,
       textTransform: 'uppercase', 
@@ -146,7 +136,6 @@ var typeLetter = {
     var timer;
     var textTransform;
    
-    // Associe la difficulté du jeu avec les paramètres
     switch (level) {
       case 'uppercase':
         timer = uppercase.timer;
@@ -243,13 +232,9 @@ var typeLetter = {
 
   // Méthode de fin de jeu effaçant le plateau et affichant le tableau de score et le bouton 'Rejouer'
   showEndResult: function () {
-    console.log('showendresult');
-
     if (typeLetter.gameStart === true) {
       typeLetter.gameStart = false;
       typeLetter.playerTime = typeLetter.playerGameTime.getTimeValues().toString();
-      console.log(typeLetter.playerTime);
-      
       typeLetter.playerGameTime.stop();
       $('#typeLetter-board').remove();
   
@@ -281,12 +266,12 @@ var typeLetter = {
     typeLetter.currentIndex = 0;
     typeLetter.mixedLetters = [];
     typeLetter.canTypeLetter = true;
-    // Relancement du jeu
+
     typeLetter.startGame();
     typeLetter.updateScore();
   },
 
-  // Méthode permettant l'envoi des statistiques
+  // Envoi des statistiques en Ajax pour qu'ils soient introduits en bdd
   sendStatsInAjax: function () {
     $.ajax({
       url: "./setStats",

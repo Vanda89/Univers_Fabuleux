@@ -13,7 +13,7 @@ class NewsModel
     private $content;
 
     /**
-     * Méthode permettant de récupérer le nombre de news.
+     * nbNews.
      */
     public static function nbNews()
     {
