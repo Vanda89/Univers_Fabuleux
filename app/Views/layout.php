@@ -16,11 +16,16 @@
   crossorigin="anonymous">
   <!-- Fichiers CSS -->
   <link rel="stylesheet" href="<?= $basePath; ?>/css/style.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= (isset($themeStyle)) ? $themeStyle : ''; ?>" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= (isset($gameStyle)) ? $gameStyle : ''; ?>" rel="stylesheet" type="text/css">
-                                          
+
+  <?php if (isset($themeStyle)) :?>
+    <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= $themeStyle; ?>" rel="stylesheet" type="text/css">
+  <?php endif; ?>
+  <?php if (isset($gameStyle)) :?>
+    <link rel="stylesheet" href="<?= $basePath; ?>/css/<?= $gameStyle; ?>" rel="stylesheet" type="text/css">                                     
+  <?php endif; ?>
+
   <!-- Favicon -->
-  <!-- <link rel="icon" href="/images/favicon.png" type="image/x-icon"> -->
+  <link rel="icon" href="<?= $basePath; ?>/images/icons/favicon.png" type="image/x-icon">
   <!-- Fichier Fontawesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
