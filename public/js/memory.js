@@ -63,9 +63,7 @@ var memory = {
     $('#easy').click(function () {
       memory.createBoard('easy')
     });
-    $('#easy').touchstart(function () {
-      memory.createBoard('easy')
-    });
+   
     $('#normal').click(function () {
       memory.createBoard('normal')
     });
@@ -327,7 +325,7 @@ var memory = {
     }
   },
 
-  // Réinitialisation du jeu
+  // Méthode remise à zéro des paramètres et relancement du jeu
   resetGame: function () {
     $('#memory').remove();
     memory.playerPair = 0;
