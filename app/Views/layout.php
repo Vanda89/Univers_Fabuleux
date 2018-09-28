@@ -43,8 +43,10 @@
 
    <?= $this->section('content'); ?>
 
-      <footer class="page-footer row d-flex flex-column py-4 mt-4">
+      <footer class="page-footer row d-flex flex-row justify-content-center align-items-center py-4 mt-4">
         <div class="footer-copyright text-light text-center font-weight-bold py-3">&COPY; 2018 ALCAZAR Sandrine</div>
+        <p class="text-light font-weight-bold m-0 px-2"> - </p>
+        <a href="<?= $router->generate('main_legalNotice'); ?>" class="text-light font-weight-bold">Mentions Légales</a>
       </footer>
   </div>
   <!-- Optional JavaScript -->

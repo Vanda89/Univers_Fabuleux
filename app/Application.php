@@ -38,7 +38,7 @@ class Application
         // 1 jeu
         $this->router->map('GET', '/game', 'MainController#showGame', 'game_game');
         // Mentions légales
-        $this->router->map('GET', '/legal-notice', 'MainController#legalNotice', 'main_legalnotice');
+        $this->router->map('GET', '/legal-notice', 'MainController#legalNotice', 'main_legalNotice');
         // Inscription
         $this->router->map('GET', '/signup', 'UserController#signup', 'user_signup');
         // Lien vers la page

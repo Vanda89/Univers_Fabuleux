@@ -84,4 +84,9 @@ class MainController extends CoreController
     {
         $this->show('main/403');
     }
+
+    public function legalNotice()
+    {
+        $this->show('main/legalNotice');
+    }
 }
