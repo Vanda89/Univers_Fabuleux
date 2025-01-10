@@ -1,3 +1,7 @@
 /app/config.conf
 vendor
 composer.lock
+replace.txt
+/docs/.htaccess
+/docs/Schema_bdd.mwb
+/docs/univers_fabuleux.sql
