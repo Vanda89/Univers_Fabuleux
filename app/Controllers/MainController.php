@@ -1,10 +1,10 @@
 <?php
 
-namespace P5universFabuleux\Controllers;
+namespace univers_fabuleux\Controllers;
 
-use P5universFabuleux\Models\GameModel;
-use P5universFabuleux\Models\NewsModel;
-use P5universFabuleux\Utils\User;
+use univers_fabuleux\Models\GameModel;
+use univers_fabuleux\Models\NewsModel;
+use univers_fabuleux\Utils\User;
 
 class MainController extends CoreController
 {

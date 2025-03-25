@@ -1,8 +1,8 @@
 <?php
 
-namespace P5universFabuleux\Models;
+namespace univers_fabuleux\Models;
 
-use P5universFabuleux\Utils\Database;
+use univers_fabuleux\Utils\Database;
 use PDO;
 
 class AvatarModel

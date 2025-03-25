@@ -1,6 +1,6 @@
 <?php
 
-namespace P5universFabuleux\Utils;
+namespace univers_fabuleux\Utils;
 
 use PDO;
 
@@ -15,8 +15,7 @@ class Database
     {
         // Récupération des données du fichier de config
         // la fonction parse_ini_file parse le fichier et retourne un array associatif
-        $configData = parse_ini_file(__DIR__.'/../config.conf');
-
+        $configData = parse_ini_file('/var/www/projects/Univers_Fabuleux/app/config.dist.conf');
         try {
             $this->dbh = new PDO(
                 "mysql:host={$configData['DB_HOST']};dbname={$configData['DB_NAME']};charset=utf8",

@@ -1,12 +1,12 @@
 <?php
 
-namespace P5universFabuleux\Controllers;
+namespace univers_fabuleux\Controllers;
 
-use P5universFabuleux\Models\UserModel;
-use P5universFabuleux\Models\ThemeModel;
-use P5universFabuleux\Models\AvatarModel;
-use P5universFabuleux\Models\StatsModel;
-use P5universFabuleux\Utils\User;
+use univers_fabuleux\Models\UserModel;
+use univers_fabuleux\Models\ThemeModel;
+use univers_fabuleux\Models\AvatarModel;
+use univers_fabuleux\Models\StatsModel;
+use univers_fabuleux\Utils\User;
 
 class UserController extends CoreController
 {
@@ -20,7 +20,7 @@ class UserController extends CoreController
 
         foreach ($avatars as $key => $avatar) {
             $item = [
-                'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
+		'picture' => '<img src="/images/companion/'.$avatar->getAvatar_picture().'">',
                 'id' => $key + 1,
             ];
             array_push($avatarList, $item);
@@ -196,7 +196,8 @@ class UserController extends CoreController
             $this->show('main/403');
         }
 
-        $userTheme = ThemeModel::find($user->getTheme_Id());
+$themeId = $user->getTheme_Id();
+$userTheme = ($themeId !== null) ? ThemeModel::find($themeId) : null;
         $themes = ThemeModel::findAllName();
         $themeList = [];
         foreach ($themes as $key => $theme) {
@@ -215,7 +216,7 @@ class UserController extends CoreController
         foreach ($avatars as $key => $avatar) {
             $item = [
                 // Insertion des images avec l'encodage en MIME
-                'picture' => '<img src="data:image/jpeg;base64,'.base64_encode($avatar->getAvatar_picture()).'"/>',
+                'picture' => '<img src="/images/companion/'.$avatar->getAvatar_picture().'">',
                 // Rajoute un attribut HTML pour l'autosélection
                 'isChecked' => (intval($user->getAvatar_id()) === $key + 1) ? 'checked' : '',
                 'id' => $key + 1,

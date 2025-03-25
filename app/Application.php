@@ -1,9 +1,9 @@
 <?php
 
-namespace P5universFabuleux;
+namespace univers_fabuleux;
 
 use AltoRouter; // => import AltoRouter
-use P5universFabuleux\Controllers\MainController;
+use univers_fabuleux\Controllers\MainController;
 
 // FrontController
 class Application
@@ -16,7 +16,7 @@ class Application
     public function __construct()
     {
         // Récupération des données de la config
-        $this->config = parse_ini_file(__DIR__.'/config.conf');
+        $this->config = parse_ini_file(__DIR__.'/config.dist.conf');
 
         // instanciation du routeur
         $this->router = new AltoRouter();
@@ -81,7 +81,7 @@ class Application
             $methodName = $controllerAndMethod[1];
 
             // Ajout du namespace des Controllers afin d'avoir un FQCN
-            $controllerName = 'P5universFabuleux\Controllers\\'.$controllerName;
+            $controllerName = 'univers_fabuleux\Controllers\\'.$controllerName;
 
             // Instanciation du controller avec spécification du FQCN et passage de l'objet Application en argument
             $controller = new $controllerName($this);

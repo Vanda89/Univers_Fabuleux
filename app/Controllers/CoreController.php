@@ -1,12 +1,12 @@
 <?php
 
-namespace P5universFabuleux\Controllers;
+namespace univers_fabuleux\Controllers;
 
 // Import Classe erterne + alias
 use League\Plates\Engine as Plates;
-use P5universFabuleux\Application;
-use P5universFabuleux\Utils\User;
-use P5universFabuleux\Models\ThemeModel;
+use univers_fabuleux\Application;
+use univers_fabuleux\Utils\User;
+use univers_fabuleux\Models\ThemeModel;
 
 // classe héritée par tous les controllers
 abstract class CoreController
@@ -32,12 +32,12 @@ abstract class CoreController
         $userTheme = null;
         $themeStyle = null;
 
-        if (User::isConnected() === true) {
-            $connectedUser = User::getConnectedUser();
-            $userTheme = ThemeModel::find($connectedUser->getTheme_id());
-            $themeStyle = $userTheme->getStyle();
-        }
-
+	if (User::isConnected() === true) {
+	    $connectedUser = User::getConnectedUser();
+	    $themeId = $connectedUser->getTheme_id();
+	    $userTheme = ($themeId !== null) ? ThemeModel::find($themeId) : null;
+	    $themeStyle = ($userTheme !== false && $userTheme !== null) ? $userTheme->getStyle() : 'style.css';
+	}
         // Transmission des données à toutes les views
         $this->templateEngine->addData([
             'router' => $this->router,

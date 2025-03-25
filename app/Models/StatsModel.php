@@ -1,8 +1,8 @@
 <?php
 
-namespace P5universFabuleux\Models;
+namespace univers_fabuleux\Models;
 
-use P5universFabuleux\Utils\Database;
+use univers_fabuleux\Utils\Database;
 use PDO;
 
 class StatsModel
@@ -71,13 +71,13 @@ class StatsModel
      */
     public static function findNewScore($game_name, $user_id)
     {
-        $sql = '
-            SELECT * 
-            FROM stats
-            WHERE game_name = :game_name AND user_id = :user_id 
-            ORDER BY play_date DESC 
-            LIMIT 1
-        ';
+$sql = '
+    SELECT * 
+    FROM stats
+    WHERE game_name = :game_name AND user_id = :user_id 
+    ORDER BY id DESC 
+    LIMIT 1
+';
         // On récupère la connextion PDO à la DB
         $pdo = Database::dbConnect();
         // On prépare une requête à l'exécution et retourne un objet

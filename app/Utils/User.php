@@ -1,8 +1,8 @@
 <?php
 
-namespace P5universFabuleux\Utils;
+namespace univers_fabuleux\Utils;
 
-use P5universFabuleux\Models\UserModel;
+use univers_fabuleux\Models\UserModel;
 
 abstract class User
 {

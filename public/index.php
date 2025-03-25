@@ -1,13 +1,9 @@
 <?php
-
-// Chargement de l'autoload de Composer
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require __DIR__.'/../vendor/autoload.php';
-
-// Importation de chaque classe grâce à l'objet Application (évite de toutes les inclure)
-use P5universFabuleux\Application;
-
+use univers_fabuleux\Application;
 session_start();
-
-// Instanciation de l'objet Application et appel de la méthode run
 $app = new Application();
 $app->run();
